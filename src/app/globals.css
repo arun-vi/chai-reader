@@ -101,6 +101,25 @@ button {
   background: var(--color-gray-400);
 }
 
+/* App Layout - Sidebar + TopNavbar */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 240px;
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 64px);
+}
+
+.main-content > *:last-child {
+  margin-top: auto;
+}
+
 /* Container utility */
 .container {
   max-width: var(--container-max);
@@ -114,6 +133,10 @@ button {
 }
 
 @media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+  }
+
   .section {
     padding: var(--spacing-3xl) 0;
   }
