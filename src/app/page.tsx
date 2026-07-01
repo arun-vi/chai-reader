@@ -29,8 +29,8 @@ export default function Home() {
   // Filter books for different sections
   const newArrivals = products.slice(0, 6);
   const bestSellers = products.filter(p => p.rating >= 4.6).slice(0, 5);
-  const crimeFiction = products.filter(p => p.category === "crime-fiction").slice(0, 5);
-  const nonFiction = products.filter(p => p.category === "self-help" || p.category === "business").slice(0, 5);
+  const crimeFiction = products.filter(p => p.category === "crime-fiction").slice(0, 6);
+  const nonFiction = products.filter(p => p.category === "self-help" || p.category === "business").slice(0, 6);
   const academics = products.filter(p => p.category === "academics").slice(0, 5);
   const business = products.filter(p => p.category === "business").slice(0, 5);
   const techBooks = products.filter(p => p.category === "tech").slice(0, 5);
@@ -68,21 +68,21 @@ export default function Home() {
   const speakAuthors = [
     {
       author: "J.K. Rowling",
-      portrait: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&h=200&q=80",
+      portrait: "/images/author-list1.png",
       bookId: 4,
       bookTitle: "Harry Potter and the Sorcerer's Stone",
       bookCover: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=150&q=80"
     },
     {
       author: "ZeeverseVault",
-      portrait: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&h=200&q=80",
+      portrait: "/images/author-list2.png",
       bookId: 1,
       bookTitle: "Death before Breakfast",
       bookCover: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=150&q=80"
     },
     {
       author: "Kathryn Bywaters",
-      portrait: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&h=200&q=80",
+      portrait: "/images/author-list3.png",
       bookId: 2,
       bookTitle: "The Past Is Rising",
       bookCover: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=150&q=80"
@@ -185,10 +185,10 @@ export default function Home() {
             View All <FiArrowRight />
           </Link>
         </div>
-        <div className="row g-3 g-lg-4">
-          {bestSellers.slice(0, 5).map((book) => (
-            <div key={book.id} className="col-6 col-sm-4 col-md-3 col-lg-2.4 col-xl-2.4 flex-fill">
-              <Card product={book} />
+        <div className={styles.scrollRow}>
+          {bestSellers.map((book) => (
+            <div key={book.id}>
+              <Card product={book} variant="simple" />
             </div>
           ))}
         </div>
@@ -199,7 +199,6 @@ export default function Home() {
         <div className={styles.sectionHeader}>
           <div className={styles.titleGroup}>
             <h2>Speak with Authors</h2>
-            <p>Interact directly with creators</p>
           </div>
         </div>
         <div className={styles.authorList}>
@@ -238,16 +237,16 @@ export default function Home() {
           <div className={styles.sectionHeader}>
             <div className={styles.titleGroup}>
               <h2>Crime Fiction</h2>
-              <p>Solve mysteries alongside world-class detectives</p>
+              <p>Trending books among readers</p>
             </div>
             <Link href="/products?category=crime-fiction" className={styles.viewAll}>
               View All <FiArrowRight />
             </Link>
           </div>
-          <div className="row g-3 g-lg-4">
+          <div className={styles.scrollRow}>
             {crimeFiction.map((book) => (
-              <div key={book.id} className="col-6 col-sm-4 col-md-3 col-lg-2.4 col-xl-2.4 flex-fill">
-                <Card product={book} />
+              <div key={book.id}>
+                <Card product={book} variant="simple" />
               </div>
             ))}
           </div>
@@ -260,16 +259,16 @@ export default function Home() {
           <div className={styles.sectionHeader}>
             <div className={styles.titleGroup}>
               <h2>Non Fiction Books</h2>
-              <p>True stories, ideas, and strategies for life</p>
+              <p>Trending books among readers</p>
             </div>
             <Link href="/products?category=self-help" className={styles.viewAll}>
               View All <FiArrowRight />
             </Link>
           </div>
-          <div className="row g-3 g-lg-4">
-            {nonFiction.slice(0, 5).map((book) => (
-              <div key={book.id} className="col-6 col-sm-4 col-md-3 col-lg-2.4 col-xl-2.4 flex-fill">
-                <Card product={book} />
+          <div className={styles.scrollRow}>
+            {nonFiction.map((book) => (
+              <div key={book.id}>
+                <Card product={book} variant="simple" />
               </div>
             ))}
           </div>
@@ -281,7 +280,6 @@ export default function Home() {
         <div className={styles.sectionHeader}>
           <div className={styles.titleGroup}>
             <h2>Famous Authors</h2>
-            <p>Popular creators writing on ChaiReader</p>
           </div>
         </div>
         <div className={styles.famousAuthorsScroll}>
@@ -309,16 +307,16 @@ export default function Home() {
           <div className={styles.sectionHeader}>
             <div className={styles.titleGroup}>
               <h2>Academics</h2>
-              <p>Top textbooks and academic study guides</p>
+              <p>Trending books among readers</p>
             </div>
             <Link href="/products?category=academics" className={styles.viewAll}>
               View All <FiArrowRight />
             </Link>
           </div>
-          <div className="row g-3 g-lg-4">
+          <div className={styles.scrollRow}>
             {academics.map((book) => (
-              <div key={book.id} className="col-6 col-sm-4 col-md-3 col-lg-2.4 col-xl-2.4 flex-fill">
-                <Card product={book} />
+              <div key={book.id}>
+                <Card product={book} variant="simple" />
               </div>
             ))}
           </div>
@@ -331,16 +329,16 @@ export default function Home() {
           <div className={styles.sectionHeader}>
             <div className={styles.titleGroup}>
               <h2>Business</h2>
-              <p>Learn financial management and startup strategies</p>
+              <p>Trending books among readers</p>
             </div>
             <Link href="/products?category=business" className={styles.viewAll}>
               View All <FiArrowRight />
             </Link>
           </div>
-          <div className="row g-3 g-lg-4">
+          <div className={styles.scrollRow}>
             {business.map((book) => (
-              <div key={book.id} className="col-6 col-sm-4 col-md-3 col-lg-2.4 col-xl-2.4 flex-fill">
-                <Card product={book} />
+              <div key={book.id}>
+                <Card product={book} variant="simple" />
               </div>
             ))}
           </div>
@@ -353,16 +351,16 @@ export default function Home() {
           <div className={styles.sectionHeader}>
             <div className={styles.titleGroup}>
               <h2>Tech Books</h2>
-              <p>Learn programming, design, and tech concepts</p>
+              <p>Trending books among readers</p>
             </div>
             <Link href="/products?category=tech" className={styles.viewAll}>
               View All <FiArrowRight />
             </Link>
           </div>
-          <div className="row g-3 g-lg-4">
+          <div className={styles.scrollRow}>
             {techBooks.map((book) => (
-              <div key={book.id} className="col-6 col-sm-4 col-md-3 col-lg-2.4 col-xl-2.4 flex-fill">
-                <Card product={book} />
+              <div key={book.id}>
+                <Card product={book} variant="simple" />
               </div>
             ))}
           </div>
@@ -375,15 +373,15 @@ export default function Home() {
           <div className={styles.sectionHeader}>
             <div className={styles.titleGroup}>
               <h2>Classics</h2>
-              <p>Time-tested masterpieces of literature</p>
+              <p>Trending books among readers</p>
             </div>
             <Link href="/products?category=classics" className={styles.viewAll}>
               View All <FiArrowRight />
             </Link>
           </div>
-          <div className="row g-3 g-lg-4">
+          <div className={styles.scrollRow}>
             {classics.map((book) => (
-              <div key={book.id} className="col-6 col-sm-4 col-md-3 col-lg-2.4 col-xl-2.4 flex-fill">
+              <div key={book.id}>
                 <Card product={book} />
               </div>
             ))}

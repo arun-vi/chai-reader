@@ -9,7 +9,7 @@ import styles from "./Card.module.css";
 
 interface CardProps {
   product: Product;
-  variant?: "default" | "compact" | "horizontal";
+  variant?: "default" | "compact" | "horizontal" | "simple";
 }
 
 export default function Card({ product, variant = "default" }: CardProps) {
@@ -83,8 +83,8 @@ export default function Card({ product, variant = "default" }: CardProps) {
   }
 
   return (
-    <div className={`${styles.card} ${styles[variant]}`}>
-      <div className={styles.imageWrapper}>
+      <div className={`${styles.card} ${styles[variant]} ${variant === "simple" ? styles.simple : ""}`}>
+        <div className={`${styles.imageWrapper} ${variant === "simple" ? styles.simpleImageWrapper : ""}`}>
         <Link href={`/products/${product.id}`}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -103,12 +103,14 @@ export default function Card({ product, variant = "default" }: CardProps) {
       </div>
 
       <div className={styles.content}>
-        <span className={styles.author}>{product.author || "Unknown Author"}</span>
-        <Link href={`/products/${product.id}`}>
+        {variant !== "simple" && (
+          <span className={styles.author}>{product.author || "Unknown Author"}</span>
+        )}
+        <Link className={styles.links} href={`/products/${product.id}`}>
           <h3 className={styles.title}>{product.title}</h3>
         </Link>
-
-        {variant !== "compact" && (
+        <span className={styles.authorName}>Morgan Housel </span>
+        {variant !== "compact" && variant !== "simple" && (
           <div className={styles.rating}>
             <div className={styles.stars}>{renderStars()}</div>
             <span className={styles.reviews}>({product.reviews})</span>
