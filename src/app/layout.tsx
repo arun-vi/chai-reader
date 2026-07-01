@@ -38,19 +38,22 @@ export default function RootLayout({
     <html lang="en" className={poppins.variable}>
       <body>
         <BootstrapClient />
-        <div className="app-layout">
-          {/* Fixed Sidebar - hidden on mobile/tablet via Bootstrap d-none d-lg-block */}
-          <Sidebar />
-          
-          {/* Fixed TopNavbar */}
-          <TopNavbar />
-          
-          {/* Main Content Area - uses responsive padding via globals.css */}
-          <main className="main-content">
-            {children}
-          </main>
-          
-          {/* Footer is rendered inside children pages or globally */}
+        <div className="app-container">
+          <div className="app-main-layout">
+            {/* Sidebar - hidden on mobile/tablet via d-none d-lg-block, sticky on desktop */}
+            <Sidebar />
+            
+            <div className="app-right">
+              {/* TopNavbar */}
+              <TopNavbar />
+              
+              {/* Main Content Area */}
+              <main className="main-content">
+                {children}
+              </main>
+            </div>
+          </div>
+          {/* Footer spans the full width of the screen */}
           <Footer />
         </div>
       </body>

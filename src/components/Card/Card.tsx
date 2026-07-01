@@ -1,12 +1,10 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
+import React, { useState } from "react";
 import Link from "next/link";
-import { FiStar, FiShoppingCart } from "react-icons/fi";
+import Image from "next/image";
+import { FiStar, FiHeart } from "react-icons/fi";
 import { Product } from "@/types/product";
-import { formatPrice, getDiscountPercentage } from "@/utils/helpers";
-import Button from "@/components/Button/Button";
 import styles from "./Card.module.css";
 
 interface CardProps {
@@ -15,10 +13,7 @@ interface CardProps {
 }
 
 export default function Card({ product, variant = "default" }: CardProps) {
-  const discount =
-    product.originalPrice
-      ? getDiscountPercentage(product.price, product.originalPrice)
-      : 0;
+  const [isLiked, setIsLiked] = useState(false);
 
   const renderStars = () => {
     const stars = [];
@@ -29,7 +24,7 @@ export default function Card({ product, variant = "default" }: CardProps) {
       if (i < fullStars) {
         stars.push(<FiStar key={i} className={styles.starFilled} />);
       } else if (i === fullStars && hasHalf) {
-        stars.push(<FiStar key={i} className={styles.starHalf} />);
+        stars.push(<FiStar key={i} className={styles.starFilled} />); // simplify half stars
       } else {
         stars.push(<FiStar key={i} className={styles.starEmpty} />);
       }
@@ -37,58 +32,93 @@ export default function Card({ product, variant = "default" }: CardProps) {
     return stars;
   };
 
+  const handleLike = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsLiked(!isLiked);
+  };
+
+  if (variant === "horizontal") {
+    return (
+      <div className={`${styles.card} ${styles.horizontal}`}>
+        <div className={styles.imageWrapper}>
+          <Link href={`/products/${product.id}`}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={product.image}
+              alt={product.title}
+              className={styles.image}
+            />
+          </Link>
+          <button
+            className={`${styles.wishlistBtn} ${isLiked ? styles.active : ""}`}
+            onClick={handleLike}
+            aria-label="Add to wishlist"
+          >
+            <FiHeart className={isLiked ? styles.heartFilled : ""} />
+          </button>
+        </div>
+
+        <div className={styles.content}>
+          <div className={styles.headerInfo}>
+            <span className={styles.author}>{product.author || "Unknown Author"}</span>
+            <Link href={`/products/${product.id}`}>
+              <h3 className={styles.title}>{product.title}</h3>
+            </Link>
+            <p className={styles.description}>{product.description}</p>
+          </div>
+
+          <div className={styles.footerInfo}>
+            <div className={styles.rating}>
+              <div className={styles.stars}>{renderStars()}</div>
+              <span className={styles.reviews}>({product.reviews})</span>
+            </div>
+            <Link href={`/products/${product.id}`} className={styles.chatBtn}>
+              Read & Chat
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={`${styles.card} ${styles[variant]}`}>
       <div className={styles.imageWrapper}>
         <Link href={`/products/${product.id}`}>
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src={product.image}
             alt={product.title}
-            width={400}
-            height={400}
             className={styles.image}
           />
         </Link>
-        {discount > 0 && (
-          <span className={styles.badge}>-{discount}%</span>
-        )}
-        {!product.inStock && (
-          <span className={`${styles.badge} ${styles.outOfStock}`}>
-            Out of Stock
-          </span>
-        )}
+        <button
+          className={`${styles.wishlistBtn} ${isLiked ? styles.active : ""}`}
+          onClick={handleLike}
+          aria-label="Add to wishlist"
+        >
+          <FiHeart className={isLiked ? styles.heartFilled : ""} />
+        </button>
       </div>
 
       <div className={styles.content}>
-        <span className={styles.category}>{product.category}</span>
+        <span className={styles.author}>{product.author || "Unknown Author"}</span>
         <Link href={`/products/${product.id}`}>
           <h3 className={styles.title}>{product.title}</h3>
         </Link>
 
         {variant !== "compact" && (
-          <p className={styles.description}>{product.description}</p>
+          <div className={styles.rating}>
+            <div className={styles.stars}>{renderStars()}</div>
+            <span className={styles.reviews}>({product.reviews})</span>
+          </div>
         )}
 
-        <div className={styles.rating}>
-          <div className={styles.stars}>{renderStars()}</div>
-          <span className={styles.reviews}>({product.reviews})</span>
-        </div>
-
         <div className={styles.footer}>
-          <div className={styles.pricing}>
-            <span className={styles.price}>{formatPrice(product.price)}</span>
-            {product.originalPrice && (
-              <span className={styles.originalPrice}>
-                {formatPrice(product.originalPrice)}
-              </span>
-            )}
-          </div>
-          {product.inStock && (
-            <Button size="sm" variant="primary" ariaLabel="Add to cart">
-              <FiShoppingCart />
-              <span>Add</span>
-            </Button>
-          )}
+          <Link href={`/products/${product.id}`} className={styles.chatBtn}>
+            Read & Chat
+          </Link>
         </div>
       </div>
     </div>

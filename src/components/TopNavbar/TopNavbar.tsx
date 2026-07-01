@@ -1,17 +1,19 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./TopNavbar.module.css";
 
-export default function TopNavbar() {
+function TopNavbarContent() {
   const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      window.location.href = `/products?search=${encodeURIComponent(searchQuery)}`;
+      router.push(`/products?search=${encodeURIComponent(searchQuery)}`);
     }
   };
 
@@ -33,15 +35,15 @@ export default function TopNavbar() {
         {/* Left: Search Bar */}
         <form className={styles.searchWrapper} onSubmit={handleSearch}>
           <Image
-            src="/icons/search.svg"
+            src="/icons/search-icon.svg"
             alt="Search"
-            width={20}
-            height={20}
+            width={15}
+            height={15}
             className={styles.searchIcon}
           />
           <input
             type="text"
-            placeholder="Search books..."
+            placeholder="Search book title or author..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className={styles.searchInput}
@@ -50,9 +52,11 @@ export default function TopNavbar() {
 
         {/* Right: Cart + Login */}
         <div className={styles.actions}>
+          <button className={styles.iconBtn} aria-label="Wishlist">
+            <Image src="/icons/heart-icon.svg" alt="Heart" width={20} height={20} />
+          </button>
           <button className={styles.cartBtn} aria-label="Cart">
-            <Image src="/icons/user.svg" alt="Cart" width={20} height={20} />
-            <span className={styles.cartBadge}>3</span>
+            <Image src="/icons/cart-icon.svg" alt="Cart" width={20} height={20} />
           </button>
           <Link href="/contact">
             <button className={styles.loginBtn}>Login</button>
@@ -60,5 +64,13 @@ export default function TopNavbar() {
         </div>
       </div>
     </header>
+  );
+}
+
+export default function TopNavbar() {
+  return (
+    <Suspense fallback={<header className={styles.topNavbar} />}>
+      <TopNavbarContent />
+    </Suspense>
   );
 }

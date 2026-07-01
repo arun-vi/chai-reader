@@ -95,32 +95,36 @@ button {
   background: var(--color-gray-400);
 }
 
-/* ===== Bootstrap-responsive App Layout ===== */
+/* ===== App Layout ===== */
 
-/* Page wrapper: pushes main content right on desktop for fixed sidebar */
-.app-layout {
+.app-container {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
+  background-color: #FAF9F5;
 }
 
-/* Main content: offset left by sidebar width on lg+ via padding */
+/* Flex layout: sidebar + right section side by side on desktop */
+.app-main-layout {
+  display: flex;
+  flex: 1;
+  position: relative;
+}
+
+/* Right section: takes remaining width, contains topnavbar + main */
+.app-right {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  background-color: #FAF9F5;
+}
+
+/* Main content area */
 .main-content {
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 64px);
-  margin-top: 64px;
-  padding-left: 0;
-}
-
-/* On large screens, offset for sidebar */
-@media (min-width: 992px) {
-  .main-content {
-    padding-left: 240px;
-  }
-}
-
-/* Push footer to bottom */
-.main-content > footer {
-  margin-top: auto;
+  flex: 1;
 }
 
 /* Section spacing using Bootstrap padding utilities */
