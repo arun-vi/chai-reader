@@ -25,12 +25,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-#__next {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
 img,
 picture,
 video,
@@ -101,45 +95,320 @@ button {
   background: var(--color-gray-400);
 }
 
-/* App Layout - Sidebar + TopNavbar */
+/* ===== Bootstrap-responsive App Layout ===== */
+
+/* Page wrapper: pushes main content right on desktop for fixed sidebar */
 .app-layout {
-  display: flex;
   min-height: 100vh;
 }
 
+/* Main content: offset left by sidebar width on lg+ via padding */
 .main-content {
-  flex: 1;
-  margin-left: 240px;
-  margin-top: 64px;
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 64px);
+  margin-top: 64px;
+  padding-left: 0;
 }
 
-.main-content > *:last-child {
+/* On large screens, offset for sidebar */
+@media (min-width: 992px) {
+  .main-content {
+    padding-left: 240px;
+  }
+}
+
+/* Push footer to bottom */
+.main-content > footer {
   margin-top: auto;
 }
 
-/* Container utility */
-.container {
-  max-width: var(--container-max);
-  margin: 0 auto;
-  padding: 0 var(--container-padding);
-}
-
-/* Section spacing */
-.section {
-  padding: var(--spacing-4xl) 0;
+/* Section spacing using Bootstrap padding utilities */
+.section-padding {
+  padding: 6rem 0; /* matches --spacing-4xl */
 }
 
 @media (max-width: 768px) {
-  .main-content {
-    margin-left: 0;
+  .section-padding {
+    padding: 4rem 0; /* matches --spacing-3xl */
   }
+}
 
-  .section {
-    padding: var(--spacing-3xl) 0;
+/* Page hero header pattern */
+.page-hero {
+  background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-white) 100%);
+  padding: 6rem 0 3rem;
+  text-align: center;
+}
+
+.page-hero h1 {
+  font-family: var(--font-primary);
+  font-size: var(--text-4xl, 2.25rem);
+  font-weight: 700;
+  color: var(--color-secondary);
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .page-hero h1 {
+    font-size: var(--text-2xl, 1.5rem);
   }
+}
+
+.page-hero p {
+  color: var(--color-gray-500);
+  font-size: var(--text-lg, 1.125rem);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Section header pattern (used in home page) */
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.section-tag {
+  font-family: var(--font-primary);
+  font-size: var(--text-sm, 0.875rem);
+  font-weight: 600;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.section-title-custom {
+  font-family: var(--font-primary);
+  font-size: var(--text-3xl, 1.875rem);
+  font-weight: 700;
+  color: var(--color-secondary);
+  margin: 0.5rem 0;
+}
+
+@media (max-width: 768px) {
+  .section-title-custom {
+    font-size: var(--text-xl, 1.25rem);
+  }
+}
+
+/* Bootstrap overrides for ChaiReader theme */
+
+/* Override Bootstrap container max-width to use our custom one */
+.container-chai {
+  max-width: var(--container-max, 1280px);
+  margin: 0 auto;
+  padding: 0 var(--container-padding, 1rem);
+}
+
+/* Override Bootstrap offcanvas header to match theme */
+.offcanvas-header-custom {
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+/* Override Bootstrap navbar toggler */
+.navbar-toggler-chai {
+  border: none;
+  padding: 0.5rem;
+  background: transparent;
+  color: var(--color-gray-600);
+}
+
+.navbar-toggler-chai:hover {
+  color: var(--color-primary);
+}
+
+/* Override Bootstrap close button */
+.btn-close-chai {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--color-gray-500);
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background var(--transition-fast);
+}
+
+.btn-close-chai:hover {
+  background: var(--color-gray-100);
+  color: var(--color-gray-700);
+}
+
+/* Category card styling (shared) */
+.category-card-chai {
+  position: relative;
+  background: var(--color-white);
+  border-radius: var(--radius-lg, 0.75rem);
+  overflow: hidden;
+  text-decoration: none;
+  transition: all var(--transition-base, 300ms ease);
+  border: 1px solid var(--color-gray-200);
+  display: block;
+}
+
+.category-card-chai:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary-light);
+}
+
+.category-card-chai .category-img-wrap {
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--color-gray-50);
+}
+
+.category-card-chai .category-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow, 500ms ease);
+}
+
+.category-card-chai:hover .category-img-wrap img {
+  transform: scale(1.05);
+}
+
+.category-card-chai .category-info {
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.category-card-chai .category-name {
+  font-family: var(--font-primary);
+  font-size: var(--text-lg, 1.125rem);
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0;
+}
+
+.category-card-chai .category-count {
+  font-size: var(--text-sm, 0.875rem);
+  color: var(--color-gray-400);
+}
+
+/* Value card (about page) */
+.value-card-chai {
+  background: var(--color-white);
+  padding: 2rem;
+  border-radius: var(--radius-xl, 1rem);
+  border: 1px solid var(--color-gray-200);
+  transition: all var(--transition-base, 300ms ease);
+  height: 100%;
+}
+
+.value-card-chai:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary-light);
+}
+
+.value-card-chai .value-icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-radius: var(--radius-lg, 0.75rem);
+  margin-bottom: 1.5rem;
+}
+
+/* Feature card (about page) */
+.feature-card-chai {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: var(--color-gray-50);
+  border-radius: var(--radius-lg, 0.75rem);
+  transition: all var(--transition-base, 300ms ease);
+  height: 100%;
+}
+
+.feature-card-chai:hover {
+  background: var(--color-white);
+  box-shadow: var(--shadow-md);
+}
+
+.feature-card-chai .feature-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-radius: var(--radius-lg, 0.75rem);
+  flex-shrink: 0;
+}
+
+/* Stat card (about page) */
+.stat-card-chai {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stat-card-chai .stat-number {
+  font-family: var(--font-primary);
+  font-size: var(--text-4xl, 2.25rem);
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+.stat-card-chai .stat-label {
+  font-size: var(--text-sm, 0.875rem);
+  color: var(--color-gray-400);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Method card (contact page) */
+.method-card-chai {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: var(--color-gray-50);
+  border-radius: var(--radius-lg, 0.75rem);
+  border: 1px solid var(--color-gray-200);
+  transition: all var(--transition-base, 300ms ease);
+}
+
+.method-card-chai:hover {
+  border-color: var(--color-primary-light);
+  box-shadow: var(--shadow-md);
+  transform: translateX(4px);
+}
+
+.method-card-chai .method-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-radius: var(--radius-lg, 0.75rem);
+  flex-shrink: 0;
 }
 
 /* Animations */

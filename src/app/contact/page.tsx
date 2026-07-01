@@ -6,7 +6,6 @@ import Loader from "@/components/Loader/Loader";
 import Button from "@/components/Button/Button";
 import { CONTACT_INFO } from "@/lib/constants";
 import { delay } from "@/utils/helpers";
-import styles from "./page.module.css";
 
 const contactMethods = [
   {
@@ -72,129 +71,144 @@ export default function ContactPage() {
   }
 
   return (
-    <div className={styles.contactPage}>
+    <div>
       {/* Hero */}
-      <section className={styles.hero}>
-        <div className={styles.container}>
-          <h1 className={styles.heroTitle}>Get in Touch</h1>
-          <p className={styles.heroDescription}>
+      <section className="page-hero">
+        <div className="container-chai">
+          <h1>Get in Touch</h1>
+          <p>
             Have a question, feedback, or just want to say hello? We'd love
             to hear from you.
           </p>
         </div>
       </section>
 
-      <div className={styles.container}>
-        <div className={styles.content}>
+      <div className="container-chai">
+        <div className="row g-4 py-5 align-items-start">
           {/* Contact Methods */}
-          <div className={styles.methods}>
-            {contactMethods.map((method, index) => (
-              <div key={index} className={styles.methodCard}>
-                <div className={styles.methodIcon}>
-                  <method.icon size={24} />
+          <div className="col-12 col-lg-5">
+            <div className="d-flex flex-column gap-3">
+              {contactMethods.map((method, index) => (
+                <div key={index} className="method-card-chai">
+                  <div className="method-icon">
+                    <method.icon size={24} />
+                  </div>
+                  <div>
+                    <h5 className="text-uppercase text-muted mb-1" style={{ fontSize: "var(--text-sm)", letterSpacing: "1px", fontWeight: 600 }}>
+                      {method.label}
+                    </h5>
+                    {method.href ? (
+                      <a href={method.href} className="text-decoration-none" style={{ color: "var(--color-gray-900)", transition: "color var(--transition-fast)" }}
+                         onMouseEnter={e => (e.target as HTMLElement).style.color = "var(--color-primary)"}
+                         onMouseLeave={e => (e.target as HTMLElement).style.color = "var(--color-gray-900)"}>
+                        {method.value}
+                      </a>
+                    ) : (
+                      <p className="mb-0" style={{ color: "var(--color-gray-900)" }}>{method.value}</p>
+                    )}
+                  </div>
                 </div>
-                <div>
-                  <h3 className={styles.methodLabel}>{method.label}</h3>
-                  {method.href ? (
-                    <a href={method.href} className={styles.methodValue}>
-                      {method.value}
-                    </a>
-                  ) : (
-                    <p className={styles.methodValue}>{method.value}</p>
-                  )}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           {/* Contact Form */}
-          <div className={styles.formWrapper}>
-            <h2 className={styles.formTitle}>Send Us a Message</h2>
-            <p className={styles.formDescription}>
-              Fill out the form below and we'll get back to you as soon as
-              possible.
-            </p>
-            {isSubmitted ? (
-              <div className={styles.successMessage}>
-                <FiSend size={32} />
-                <h3>Message Sent Successfully!</h3>
-                <p>Thank you for reaching out. We'll get back to you shortly.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className={styles.form}>
-                <div className={styles.formRow}>
-                  <div className={styles.formGroup}>
-                    <label htmlFor="name" className={styles.label}>
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className={styles.input}
-                      placeholder="John Doe"
-                    />
+          <div className="col-12 col-lg-7">
+            <div className="bg-white border rounded-4 p-4 p-lg-5 shadow-sm">
+              <h2 className="fw-bold mb-2" style={{ fontFamily: "var(--font-primary)", color: "var(--color-secondary)" }}>
+                Send Us a Message
+              </h2>
+              <p className="text-muted mb-4">
+                Fill out the form below and we'll get back to you as soon as possible.
+              </p>
+              {isSubmitted ? (
+                <div className="text-center py-5 d-flex flex-column align-items-center gap-3" style={{ color: "var(--color-success)" }}>
+                  <FiSend size={32} />
+                  <h3 className="fw-bold" style={{ fontFamily: "var(--font-primary)", color: "var(--color-gray-900)" }}>
+                    Message Sent Successfully!
+                  </h3>
+                  <p className="text-muted">Thank you for reaching out. We'll get back to you shortly.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit}>
+                  <div className="row g-3">
+                    <div className="col-12 col-md-6">
+                      <div className="mb-3">
+                        <label htmlFor="name" className="form-label fw-medium">Full Name *</label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
+                          className="form-control"
+                          placeholder="John Doe"
+                          style={{ borderWidth: 2, padding: "0.75rem 1rem" }}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-12 col-md-6">
+                      <div className="mb-3">
+                        <label htmlFor="email" className="form-label fw-medium">Email Address *</label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          required
+                          className="form-control"
+                          placeholder="john@example.com"
+                          style={{ borderWidth: 2, padding: "0.75rem 1rem" }}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-12">
+                      <div className="mb-3">
+                        <label htmlFor="subject" className="form-label fw-medium">Subject *</label>
+                        <select
+                          id="subject"
+                          name="subject"
+                          value={formData.subject}
+                          onChange={handleChange}
+                          required
+                          className="form-select"
+                          style={{ borderWidth: 2, padding: "0.75rem 1rem" }}
+                        >
+                          <option value="">Select a subject</option>
+                          <option value="general">General Inquiry</option>
+                          <option value="support">Product Support</option>
+                          <option value="order">Order Status</option>
+                          <option value="feedback">Feedback</option>
+                          <option value="other">Other</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div className="col-12">
+                      <div className="mb-3">
+                        <label htmlFor="message" className="form-label fw-medium">Message *</label>
+                        <textarea
+                          id="message"
+                          name="message"
+                          value={formData.message}
+                          onChange={handleChange}
+                          required
+                          className="form-control"
+                          rows={6}
+                          placeholder="Tell us how we can help..."
+                          style={{ borderWidth: 2, padding: "0.75rem 1rem", resize: "vertical" }}
+                        />
+                      </div>
+                    </div>
                   </div>
-                  <div className={styles.formGroup}>
-                    <label htmlFor="email" className={styles.label}>
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className={styles.input}
-                      placeholder="john@example.com"
-                    />
-                  </div>
-                </div>
-                <div className={styles.formGroup}>
-                  <label htmlFor="subject" className={styles.label}>
-                    Subject *
-                  </label>
-                  <select
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                    className={styles.input}
-                  >
-                    <option value="">Select a subject</option>
-                    <option value="general">General Inquiry</option>
-                    <option value="support">Product Support</option>
-                    <option value="order">Order Status</option>
-                    <option value="feedback">Feedback</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-                <div className={styles.formGroup}>
-                  <label htmlFor="message" className={styles.label}>
-                    Message *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    className={`${styles.input} ${styles.textarea}`}
-                    rows={6}
-                    placeholder="Tell us how we can help..."
-                  />
-                </div>
-                <Button type="submit" variant="primary" size="lg" fullWidth>
-                  <FiSend />
-                  Send Message
-                </Button>
-              </form>
-            )}
+                  <Button type="submit" variant="primary" size="lg" fullWidth>
+                    <FiSend />
+                    Send Message
+                  </Button>
+                </form>
+              )}
+            </div>
           </div>
         </div>
       </div>

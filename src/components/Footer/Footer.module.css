@@ -2,19 +2,13 @@
   background: var(--color-secondary);
   color: var(--color-gray-300);
   position: relative;
+  padding: 6rem 0 2rem;
 }
 
-.container {
-  max-width: var(--container-max);
-  margin: 0 auto;
-  padding: var(--spacing-4xl) var(--container-padding) var(--spacing-xl);
-}
-
-/* Grid */
-.grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: var(--spacing-3xl);
+@media (max-width: 768px) {
+  .footer {
+    padding: 4rem 0 1.5rem;
+  }
 }
 
 /* Brand */
@@ -133,8 +127,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: var(--spacing-3xl);
-  padding-top: var(--spacing-xl);
+  margin-top: 3rem;
+  padding-top: 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -162,33 +156,6 @@
   background: var(--color-primary);
   color: var(--color-white);
   transform: translateY(-2px);
-}
-
-/* Responsive */
-@media (max-width: 992px) {
-  .grid {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-2xl);
-  }
-
-  .brand {
-    grid-column: 1 / -1;
-  }
-
-  .description {
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding-top: var(--spacing-3xl);
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-2xl);
-  }
 }
 
 @media (max-width: 480px) {

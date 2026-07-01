@@ -11,7 +11,6 @@ import Loader from "@/components/Loader/Loader";
 import { products } from "@/data/products";
 import { categories } from "@/data/categories";
 import { testimonials } from "@/data/testimonials";
-import { formatPrice } from "@/utils/helpers";
 import { delay } from "@/utils/helpers";
 import styles from "./page.module.css";
 
@@ -53,15 +52,13 @@ export default function Home() {
       />
 
       {/* Featured Products */}
-      <section className={`${styles.section} ${styles.featured}`}>
-        <div className={styles.container}>
-          <div className={styles.sectionHeader}>
+      <section className={`section-padding ${styles.featured}`}>
+        <div className="container-chai">
+          <div className="section-header">
             <div>
-              <span className={styles.sectionTag}>Top Picks</span>
-              <h2 className={styles.sectionTitle}>Featured Products</h2>
-              <p className={styles.sectionDescription}>
-                Handpicked products just for you
-              </p>
+              <span className="section-tag">Top Picks</span>
+              <h2 className="section-title-custom">Featured Products</h2>
+              <p className="text-muted mb-0">Handpicked products just for you</p>
             </div>
             <Link href="/products">
               <Button variant="outline">
@@ -69,48 +66,51 @@ export default function Home() {
               </Button>
             </Link>
           </div>
-          <div className={styles.productGrid}>
+          {/* Bootstrap responsive grid: 1 col on mobile, 2 on sm, 3 on md, 4 on lg */}
+          <div className="row g-3 g-lg-4">
             {featuredProducts.map((product) => (
-              <Card key={product.id} product={product} />
+              <div key={product.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
+                <Card product={product} />
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Categories */}
-      <section className={`${styles.section} ${styles.categories}`}>
-        <div className={styles.container}>
-          <div className={styles.sectionHeader}>
+      <section className={`section-padding ${styles.categories}`}>
+        <div className="container-chai">
+          <div className="section-header">
             <div>
-              <span className={styles.sectionTag}>Browse</span>
-              <h2 className={styles.sectionTitle}>Shop by Category</h2>
-              <p className={styles.sectionDescription}>
-                Find exactly what you need
-              </p>
+              <span className="section-tag">Browse</span>
+              <h2 className="section-title-custom">Shop by Category</h2>
+              <p className="text-muted mb-0">Find exactly what you need</p>
             </div>
           </div>
-          <div className={styles.categoryGrid}>
+          {/* Bootstrap responsive grid: 1 col on mobile, 2 on sm, 3 on md+ */}
+          <div className="row g-3 g-lg-4">
             {categories.map((category) => (
-              <Link
-                key={category.id}
-                href={`/products?category=${category.slug}`}
-                className={styles.categoryCard}
-              >
-                <div className={styles.categoryImage}>
-                  <Image
-                    src={category.image}
-                    alt={category.name}
-                    width={200}
-                    height={200}
-                  />
-                </div>
-                <div className={styles.categoryInfo}>
-                  <h3 className={styles.categoryName}>{category.name}</h3>
-                  <span className={styles.categoryCount}>
-                    {category.count} items
-                  </span>
-                </div>
-              </Link>
+              <div key={category.id} className="col-12 col-sm-6 col-md-4">
+                <Link
+                  href={`/products?category=${category.slug}`}
+                  className="category-card-chai"
+                >
+                  <div className="category-img-wrap">
+                    <Image
+                      src={category.image}
+                      alt={category.name}
+                      width={200}
+                      height={200}
+                    />
+                  </div>
+                  <div className="category-info">
+                    <h3 className="category-name">{category.name}</h3>
+                    <span className="category-count">
+                      {category.count} items
+                    </span>
+                  </div>
+                </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -118,45 +118,47 @@ export default function Home() {
 
       {/* Promo Banner */}
       <section className={styles.promo}>
-        <div className={styles.container}>
-          <div className={styles.promoContent}>
-            <div className={styles.promoText}>
-              <span className={styles.promoTag}>Limited Offer</span>
-              <h2 className={styles.promoTitle}>
-                Up to 30% Off on Premium Headphones
-              </h2>
-              <p className={styles.promoDescription}>
-                Experience crystal-clear audio with industry-leading noise
-                cancellation. Limited time offer on selected models.
-              </p>
-              <Link href="/products?category=headphones">
-                <Button variant="primary" size="lg">
-                  Grab the Deal <FiArrowRight />
-                </Button>
-              </Link>
+        <div className="container-chai">
+          <div className="row align-items-center g-4">
+            <div className="col-12 col-lg-6">
+              <div className={styles.promoText}>
+                <span className={styles.promoTag}>Limited Offer</span>
+                <h2 className={styles.promoTitle}>
+                  Up to 30% Off on Premium Headphones
+                </h2>
+                <p className={styles.promoDescription}>
+                  Experience crystal-clear audio with industry-leading noise
+                  cancellation. Limited time offer on selected models.
+                </p>
+                <Link href="/products?category=headphones">
+                  <Button variant="primary" size="lg">
+                    Grab the Deal <FiArrowRight />
+                  </Button>
+                </Link>
+              </div>
             </div>
-            <div className={styles.promoImage}>
-              <Image
-                src="/images/promo-headphones.png"
-                alt="Premium Headphones"
-                width={500}
-                height={400}
-              />
+            <div className="col-12 col-lg-6 text-center">
+              <div className={styles.promoImage}>
+                <Image
+                  src="/images/promo-headphones.png"
+                  alt="Premium Headphones"
+                  width={500}
+                  height={400}
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Testimonials */}
-      <section className={`${styles.section} ${styles.testimonials}`}>
-        <div className={styles.container}>
-          <div className={styles.sectionHeader}>
+      <section className={`section-padding ${styles.testimonials}`}>
+        <div className="container-chai">
+          <div className="section-header text-center flex-column align-items-center">
             <div>
-              <span className={styles.sectionTag}>Testimonials</span>
-              <h2 className={styles.sectionTitle}>What Our Customers Say</h2>
-              <p className={styles.sectionDescription}>
-                Trusted by thousands of happy customers
-              </p>
+              <span className="section-tag">Testimonials</span>
+              <h2 className="section-title-custom">What Our Customers Say</h2>
+              <p className="text-muted mb-0">Trusted by thousands of happy customers</p>
             </div>
           </div>
           <div className={styles.testimonialCarousel}>
@@ -221,7 +223,7 @@ export default function Home() {
 
       {/* Newsletter */}
       <section className={styles.newsletter}>
-        <div className={styles.container}>
+        <div className="container-chai">
           <div className={styles.newsletterContent}>
             <h2 className={styles.newsletterTitle}>
               Stay Updated with Latest Deals

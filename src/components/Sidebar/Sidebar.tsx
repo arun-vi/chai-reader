@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -27,43 +27,100 @@ const sidebarLinks: SidebarLink[] = [
 export default function Sidebar() {
   const pathname = usePathname();
 
-  return (
-    <aside className={styles.sidebar}>
-      <Link href="/" className={styles.logo}>
-        <Image
-          src="/icons/logo.svg"
-          alt="ChaiReader"
-          width={36}
-          height={36}
-          priority
-        />
-        <span className={styles.logoText}>ChaiReader</span>
-      </Link>
+  // Close offcanvas on route change
+  useEffect(() => {
+    // Only run on client
+    if (typeof window === "undefined") return;
+    
+    import("bootstrap").then(({ Offcanvas }) => {
+      const offcanvasEl = document.getElementById("sidebarOffcanvas");
+      if (offcanvasEl) {
+        const bsOffcanvas = Offcanvas.getInstance(offcanvasEl);
+        if (bsOffcanvas) {
+          bsOffcanvas.hide();
+        }
+      }
+    });
+  }, [pathname]);
 
-      <nav className={styles.nav}>
-        <span className={styles.navTitle}>Browse</span>
-        <ul className={styles.navList}>
-          {sidebarLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className={`${styles.navLink} ${
-                  pathname === link.href ? styles.active : ""
-                }`}
-              >
-                <Image
-                  src={link.icon}
-                  alt={link.label}
-                  width={20}
-                  height={20}
-                  className={styles.navIcon}
-                />
-                <span>{link.label}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </aside>
+  const renderLinks = () =>
+    sidebarLinks.map((link) => (
+      <li key={link.href}>
+        <Link
+          href={link.href}
+          className={`${styles.navLink} ${
+            pathname === link.href ? styles.active : ""
+          }`}
+        >
+          <Image
+            src={link.icon}
+            alt={link.label}
+            width={20}
+            height={20}
+            className={styles.navIcon}
+          />
+          <span>{link.label}</span>
+        </Link>
+      </li>
+    ));
+
+  // Desktop fixed sidebar (hidden on lg-down via Bootstrap d-none d-lg-block)
+  return (
+    <>
+      {/* Desktop Sidebar */}
+      <aside className={`${styles.sidebar} d-none d-lg-block`}>
+        <Link href="/" className={styles.logo}>
+          <Image
+            src="/icons/logo.svg"
+            alt="ChaiReader"
+            width={36}
+            height={36}
+            priority
+          />
+          <span className={styles.logoText}>ChaiReader</span>
+        </Link>
+
+        <nav className={styles.nav}>
+          <span className={styles.navTitle}>Browse</span>
+          <ul className={styles.navList}>{renderLinks()}</ul>
+        </nav>
+      </aside>
+
+      {/* Mobile/Tablet Offcanvas Sidebar (hidden on lg+) */}
+      <div
+        className="offcanvas offcanvas-start d-lg-none"
+        tabIndex={-1}
+        id="sidebarOffcanvas"
+        aria-labelledby="sidebarOffcanvasLabel"
+        data-bs-scroll="false"
+        data-bs-backdrop="true"
+        style={{ width: "280px" }}
+      >
+        <div className="offcanvas-header border-bottom">
+          <Link href="/" className="text-decoration-none d-flex align-items-center gap-2">
+            <Image
+              src="/icons/logo.svg"
+              alt="ChaiReader"
+              width={32}
+              height={32}
+              priority
+            />
+            <span className={styles.logoText}>ChaiReader</span>
+          </Link>
+          <button
+            type="button"
+            className="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          />
+        </div>
+        <div className="offcanvas-body p-3">
+          <nav>
+            <span className={styles.navTitle}>Browse</span>
+            <ul className={styles.navList}>{renderLinks()}</ul>
+          </nav>
+        </div>
+      </div>
+    </>
   );
 }

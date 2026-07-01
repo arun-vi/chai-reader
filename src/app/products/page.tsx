@@ -64,16 +64,14 @@ export default function ProductsPage() {
   return (
     <div className={styles.productsPage}>
       {/* Page Header */}
-      <section className={styles.pageHeader}>
-        <div className={styles.container}>
-          <h1 className={styles.pageTitle}>Our Products</h1>
-          <p className={styles.pageDescription}>
-            Browse our collection of premium tech products
-          </p>
+      <section className="page-hero">
+        <div className="container-chai">
+          <h1>Our Products</h1>
+          <p>Browse our collection of premium tech products</p>
         </div>
       </section>
 
-      <div className={styles.container}>
+      <div className="container-chai">
         {/* Search & Controls */}
         <div className={styles.controls}>
           <div className={styles.searchWrapper}>
@@ -89,7 +87,7 @@ export default function ProductsPage() {
 
           <div className={styles.controlActions}>
             <button
-              className={styles.filterToggle}
+              className={`${styles.filterToggle} d-lg-none`}
               onClick={() => setShowFilters(!showFilters)}
             >
               <FiSliders size={18} />
@@ -130,37 +128,76 @@ export default function ProductsPage() {
           </div>
         </div>
 
-        <div className={styles.content}>
-          {/* Sidebar Filters */}
-          <aside className={`${styles.sidebar} ${showFilters ? styles.sidebarOpen : ""}`}>
-            <div className={styles.filterGroup}>
-              <h3 className={styles.filterTitle}>Categories</h3>
-              <ul className={styles.categoryList}>
-                <li>
-                  <button
-                    className={`${styles.categoryBtn} ${!selectedCategory ? styles.categoryActive : ""}`}
-                    onClick={() => setSelectedCategory(null)}
-                  >
-                    All Products
-                  </button>
-                </li>
-                {categories.map((cat) => (
-                  <li key={cat.id}>
+        <div className="row g-4">
+          {/* Sidebar Filters - visible on lg+ (desktop) as column, offcanvas on smaller */}
+          <div className="col-lg-3 d-none d-lg-block">
+            <aside className={styles.sidebar}>
+              <div className={styles.filterGroup}>
+                <h3 className={styles.filterTitle}>Categories</h3>
+                <ul className={styles.categoryList}>
+                  <li>
                     <button
-                      className={`${styles.categoryBtn} ${selectedCategory === cat.slug ? styles.categoryActive : ""}`}
-                      onClick={() => setSelectedCategory(cat.slug)}
+                      className={`${styles.categoryBtn} ${!selectedCategory ? styles.categoryActive : ""}`}
+                      onClick={() => setSelectedCategory(null)}
                     >
-                      {cat.name}
-                      <span className={styles.categoryCount}>{cat.count}</span>
+                      All Products
                     </button>
                   </li>
-                ))}
-              </ul>
+                  {categories.map((cat) => (
+                    <li key={cat.id}>
+                      <button
+                        className={`${styles.categoryBtn} ${selectedCategory === cat.slug ? styles.categoryActive : ""}`}
+                        onClick={() => setSelectedCategory(cat.slug)}
+                      >
+                        {cat.name}
+                        <span className={styles.categoryCount}>{cat.count}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </aside>
+          </div>
+
+          {/* Mobile filter overlay */}
+          {showFilters && (
+            <div className="d-lg-none">
+              <div className={styles.filterOverlay} onClick={() => setShowFilters(false)} />
+              <aside className={`${styles.mobileFilter}`}>
+                <div className="d-flex justify-content-between align-items-center mb-3">
+                  <h5 className="mb-0 fw-bold">Filters</h5>
+                  <button className="btn-close-chai" onClick={() => setShowFilters(false)} aria-label="Close filters">&times;</button>
+                </div>
+                <div className={styles.filterGroup}>
+                  <h3 className={styles.filterTitle}>Categories</h3>
+                  <ul className={styles.categoryList}>
+                    <li>
+                      <button
+                        className={`${styles.categoryBtn} ${!selectedCategory ? styles.categoryActive : ""}`}
+                        onClick={() => { setSelectedCategory(null); setShowFilters(false); }}
+                      >
+                        All Products
+                      </button>
+                    </li>
+                    {categories.map((cat) => (
+                      <li key={cat.id}>
+                        <button
+                          className={`${styles.categoryBtn} ${selectedCategory === cat.slug ? styles.categoryActive : ""}`}
+                          onClick={() => { setSelectedCategory(cat.slug); setShowFilters(false); }}
+                        >
+                          {cat.name}
+                          <span className={styles.categoryCount}>{cat.count}</span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </aside>
             </div>
-          </aside>
+          )}
 
           {/* Products Grid */}
-          <div className={styles.productsWrapper}>
+          <div className="col-lg-9">
             {filteredProducts.length === 0 ? (
               <div className={styles.noResults}>
                 <h3>No products found</h3>
@@ -169,16 +206,18 @@ export default function ProductsPage() {
             ) : (
               <div
                 className={`${
-                  viewMode === "grid" ? styles.productGrid : styles.productList
+                  viewMode === "grid" ? "row g-3 g-lg-4" : "d-flex flex-column gap-3"
                 }`}
               >
-                {filteredProducts.map((product) => (
-                  <Card
-                    key={product.id}
-                    product={product}
-                    variant={viewMode === "list" ? "horizontal" : "default"}
-                  />
-                ))}
+                {filteredProducts.map((product) =>
+                  viewMode === "grid" ? (
+                    <div key={product.id} className="col-12 col-sm-6 col-xl-4">
+                      <Card product={product} />
+                    </div>
+                  ) : (
+                    <Card key={product.id} product={product} variant="horizontal" />
+                  )
+                )}
               </div>
             )}
           </div>

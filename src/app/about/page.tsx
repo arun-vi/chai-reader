@@ -8,7 +8,6 @@ import Button from "@/components/Button/Button";
 import Link from "next/link";
 import { FiArrowRight } from "react-icons/fi";
 import { delay } from "@/utils/helpers";
-import styles from "./page.module.css";
 
 const values = [
   {
@@ -72,69 +71,73 @@ export default function AboutPage() {
   }
 
   return (
-    <div className={styles.aboutPage}>
+    <div>
       {/* Hero */}
-      <section className={styles.hero}>
-        <div className={styles.container}>
-          <div className={styles.heroContent}>
-            <h1 className={styles.heroTitle}>About ChaiReader</h1>
-            <p className={styles.heroDescription}>
-              We are passionate about technology and committed to bringing you the
-              best gadgets and electronics at unbeatable prices.
-            </p>
-          </div>
+      <section className="page-hero">
+        <div className="container-chai">
+          <h1>About ChaiReader</h1>
+          <p>
+            We are passionate about technology and committed to bringing you the
+            best gadgets and electronics at unbeatable prices.
+          </p>
         </div>
       </section>
 
       {/* Story */}
-      <section className={styles.section}>
-        <div className={styles.container}>
-          <div className={styles.story}>
-            <div className={styles.storyImage}>
-              <Image
-                src="/images/about-story.jpg"
-                alt="Our story"
-                width={560}
-                height={420}
-                className={styles.storyImg}
-              />
+      <section className="section-padding">
+        <div className="container-chai">
+          <div className="row align-items-center g-5">
+            <div className="col-12 col-lg-6">
+              <div className="rounded-4 overflow-hidden">
+                <Image
+                  src="/images/about-story.jpg"
+                  alt="Our story"
+                  width={560}
+                  height={420}
+                  className="w-100 h-auto"
+                />
+              </div>
             </div>
-            <div className={styles.storyContent}>
-              <span className={styles.tag}>Our Story</span>
-              <h2 className={styles.sectionTitle}>From Passion to Purpose</h2>
-              <p className={styles.storyText}>
-                ChaiReader was founded in 2024 with a simple mission: make premium
-                technology accessible to everyone. What started as a small
-                online store has grown into a trusted destination for tech
-                enthusiasts worldwide.
-              </p>
-              <p className={styles.storyText}>
-                We carefully curate every product in our collection, ensuring
-                that each item meets our rigorous standards for quality,
-                performance, and value. Our team of tech experts tests and
-                reviews products before they make it to our shelves.
-              </p>
-              <Link href="/products">
-                <Button variant="primary" size="lg">
-                  Explore Products <FiArrowRight />
-                </Button>
-              </Link>
+            <div className="col-12 col-lg-6">
+              <div className="d-flex flex-column gap-3">
+                <span className="section-tag">Our Story</span>
+                <h2 className="section-title-custom">From Passion to Purpose</h2>
+                <p className="text-secondary" style={{ lineHeight: 1.8 }}>
+                  ChaiReader was founded in 2024 with a simple mission: make premium
+                  technology accessible to everyone. What started as a small
+                  online store has grown into a trusted destination for tech
+                  enthusiasts worldwide.
+                </p>
+                <p className="text-secondary" style={{ lineHeight: 1.8 }}>
+                  We carefully curate every product in our collection, ensuring
+                  that each item meets our rigorous standards for quality,
+                  performance, and value. Our team of tech experts tests and
+                  reviews products before they make it to our shelves.
+                </p>
+                <Link href="/products">
+                  <Button variant="primary" size="lg">
+                    Explore Products <FiArrowRight />
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Values */}
-      <section className={`${styles.section} ${styles.valuesSection}`}>
-        <div className={styles.container}>
-          <div className={styles.valuesGrid}>
+      <section className="section-padding" style={{ background: "var(--color-gray-50)" }}>
+        <div className="container-chai">
+          <div className="row g-4">
             {values.map((value, index) => (
-              <div key={index} className={styles.valueCard}>
-                <div className={styles.valueIcon}>
-                  <value.icon size={28} />
+              <div key={index} className="col-12 col-md-6 col-lg-4">
+                <div className="value-card-chai">
+                  <div className="value-icon">
+                    <value.icon size={28} />
+                  </div>
+                  <h3 style={{ fontFamily: "var(--font-primary)", fontSize: "var(--text-xl)", fontWeight: 600, color: "var(--color-secondary)", marginBottom: "0.5rem" }}>{value.title}</h3>
+                  <p style={{ color: "var(--color-gray-500)", lineHeight: 1.7, fontSize: "var(--text-sm)", margin: 0 }}>{value.description}</p>
                 </div>
-                <h3 className={styles.valueTitle}>{value.title}</h3>
-                <p className={styles.valueDescription}>{value.description}</p>
               </div>
             ))}
           </div>
@@ -142,13 +145,15 @@ export default function AboutPage() {
       </section>
 
       {/* Stats */}
-      <section className={styles.statsSection}>
-        <div className={styles.container}>
-          <div className={styles.statsGrid}>
+      <section className="section-padding" style={{ background: "var(--color-secondary)" }}>
+        <div className="container-chai">
+          <div className="row g-4">
             {stats.map((stat, index) => (
-              <div key={index} className={styles.statCard}>
-                <span className={styles.statNumber}>{stat.number}</span>
-                <span className={styles.statLabel}>{stat.label}</span>
+              <div key={index} className="col-6 col-lg-3">
+                <div className="stat-card-chai text-center">
+                  <span className="stat-number">{stat.number}</span>
+                  <span className="stat-label">{stat.label}</span>
+                </div>
               </div>
             ))}
           </div>
@@ -156,19 +161,19 @@ export default function AboutPage() {
       </section>
 
       {/* Features */}
-      <section className={styles.section}>
-        <div className={styles.container}>
-          <div className={styles.featuresGrid}>
+      <section className="section-padding">
+        <div className="container-chai">
+          <div className="row g-4">
             {features.map((feature, index) => (
-              <div key={index} className={styles.featureCard}>
-                <div className={styles.featureIcon}>
-                  <feature.icon size={24} />
-                </div>
-                <div>
-                  <h3 className={styles.featureTitle}>{feature.title}</h3>
-                  <p className={styles.featureDescription}>
-                    {feature.description}
-                  </p>
+              <div key={index} className="col-12 col-md-6 col-lg-4">
+                <div className="feature-card-chai">
+                  <div className="feature-icon">
+                    <feature.icon size={24} />
+                  </div>
+                  <div>
+                    <h3 style={{ fontFamily: "var(--font-primary)", fontSize: "var(--text-lg)", fontWeight: 600, color: "var(--color-secondary)", marginBottom: "0.25rem" }}>{feature.title}</h3>
+                    <p style={{ color: "var(--color-gray-500)", fontSize: "var(--text-sm)", lineHeight: 1.6, margin: 0 }}>{feature.description}</p>
+                  </div>
                 </div>
               </div>
             ))}

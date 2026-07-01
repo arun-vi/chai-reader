@@ -94,10 +94,3 @@
   opacity: 1;
   filter: brightness(0) invert(1);
 }
-
-/* Responsive - hide sidebar on mobile, use overlay */
-@media (max-width: 768px) {
-  .sidebar {
-    display: none;
-  }
-}
