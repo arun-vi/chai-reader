@@ -17,6 +17,18 @@
 }
 
 /* Image Wrapper */
+.simple {
+  max-width: 190px;
+  align-items: center;
+  padding-top: 9px;
+}
+
+.simpleImageWrapper {
+  width: 168px;
+  height: 249px;
+  aspect-ratio: auto;
+}
+
 .imageWrapper {
   position: relative;
   aspect-ratio: 1 / 1.35; /* Portrait aspect ratio for book covers */
@@ -86,14 +98,17 @@
   margin-bottom: 0.25rem;
   display: block;
 }
-
+.links {
+  height: 16px;
+  margin-bottom: 5px;
+}
 .title {
   font-family: var(--font-primary);
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #2B2638;
+  font-size: 12px;
+  font-weight: 600;
+  color: #303030;
   margin: 0 0 0.5rem 0;
-  line-height: 1.4;
+  line-height: 16px;
   height: 2.8em; /* fixed height for two lines */
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -104,7 +119,13 @@
 .title:hover {
   color: #3b82f6;
 }
-
+.authorName {
+  font-size: 12px;
+  line-height: 13px;
+  font-weight: 500;
+  color: #1142BE;
+  margin-top: 10px;
+}
 .description {
   font-size: 0.85rem;
   color: #6B685B;
@@ -153,16 +174,17 @@
   display: block;
   width: 100%;
   text-align: center;
-  background: #2B2638; /* dark charcoal */
+  background: #121212;
   color: #ffffff;
-  border-radius: 100px;
+  border-radius: 6px;
   padding: 0.6rem 1rem;
   font-family: var(--font-primary);
   font-size: 0.85rem;
   font-weight: 600;
   text-decoration: none;
   transition: all var(--transition-fast);
-  border: 1px solid #2B2638;
+  border: 1px solid #121212;
+  margin-top: 8px;
 }
 
 .chatBtn:hover {
