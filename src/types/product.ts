@@ -10,6 +10,15 @@ export interface Product {
   reviews: number;
   featured?: boolean;
   inStock: boolean;
+  author?: string;
+  authorImage?: string;
+  authorBio?: string;
+  publisher?: string;
+  publishedDate?: string;
+  language?: string;
+  pages?: number;
+  tags?: string[];
+  reviewsList?: { name: string; content: string }[];
 }
 
 export interface Category {

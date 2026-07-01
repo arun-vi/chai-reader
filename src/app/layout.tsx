@@ -3,6 +3,8 @@ import { Poppins } from "next/font/google";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import TopNavbar from "@/components/TopNavbar/TopNavbar";
 import Footer from "@/components/Footer/Footer";
+import BootstrapClient from "@/components/BootstrapClient";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -35,10 +37,23 @@ export default function RootLayout({
   return (
     <html lang="en" className={poppins.variable}>
       <body>
-        <div className="app-layout">
-          <Sidebar />
-          <TopNavbar />
-          <main className="main-content">{children}</main>
+        <BootstrapClient />
+        <div className="app-container">
+          <div className="app-main-layout">
+            {/* Sidebar - hidden on mobile/tablet via d-none d-lg-block, sticky on desktop */}
+            <Sidebar />
+            
+            <div className="app-right">
+              {/* TopNavbar */}
+              <TopNavbar />
+              
+              {/* Main Content Area */}
+              <main className="main-content">
+                {children}
+              </main>
+            </div>
+          </div>
+          {/* Footer spans the full width of the screen */}
           <Footer />
         </div>
       </body>
