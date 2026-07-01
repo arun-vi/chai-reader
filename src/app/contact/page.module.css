@@ -1,0 +1,215 @@
+.contactPage {
+  padding-top: 72px;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-white) 100%);
+  padding: var(--spacing-4xl) 0;
+  text-align: center;
+}
+
+.heroTitle {
+  font-family: var(--font-primary);
+  font-size: var(--text-5xl);
+  font-weight: 700;
+  color: var(--color-secondary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.heroDescription {
+  font-size: var(--text-lg);
+  color: var(--color-gray-500);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Content */
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: var(--spacing-3xl);
+  padding: var(--spacing-4xl) 0;
+  align-items: start;
+}
+
+/* Methods */
+.methods {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.methodCard {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl);
+  background: var(--color-gray-50);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-200);
+  transition: all var(--transition-base);
+}
+
+.methodCard:hover {
+  border-color: var(--color-primary-light);
+  box-shadow: var(--shadow-md);
+  transform: translateX(4px);
+}
+
+.methodIcon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-radius: var(--radius-lg);
+  flex-shrink: 0;
+}
+
+.methodLabel {
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-gray-400);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--spacing-xs);
+}
+
+.methodValue {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  color: var(--color-gray-900);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  margin: 0;
+}
+
+.methodValue:hover {
+  color: var(--color-primary);
+}
+
+/* Form */
+.formWrapper {
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-2xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.formTitle {
+  font-family: var(--font-primary);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-secondary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.formDescription {
+  color: var(--color-gray-500);
+  margin-bottom: var(--spacing-xl);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.label {
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-gray-700);
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--color-gray-200);
+  border-radius: var(--radius-md);
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  outline: none;
+  transition: border-color var(--transition-fast);
+  background: var(--color-white);
+  color: var(--color-gray-900);
+}
+
+.input:focus {
+  border-color: var(--color-primary);
+}
+
+.input::placeholder {
+  color: var(--color-gray-400);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Success */
+.successMessage {
+  text-align: center;
+  padding: var(--spacing-4xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+  color: var(--color-success);
+}
+
+.successMessage h3 {
+  font-family: var(--font-primary);
+  font-size: var(--text-xl);
+  color: var(--color-gray-900);
+}
+
+.successMessage p {
+  color: var(--color-gray-500);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  .heroTitle {
+    font-size: var(--text-3xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .content {
+    padding: var(--spacing-3xl) 0;
+  }
+}

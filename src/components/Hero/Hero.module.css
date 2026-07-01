@@ -1,0 +1,157 @@
+.hero {
+  padding: 120px 0 80px;
+  background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-white) 100%);
+  overflow: hidden;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-3xl);
+  align-items: center;
+}
+
+/* Content */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.subtitle {
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: var(--text-5xl);
+  font-weight: 700;
+  color: var(--color-secondary);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.description {
+  font-size: var(--text-lg);
+  color: var(--color-gray-500);
+  line-height: 1.7;
+  max-width: 540px;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+/* Image */
+.imageWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  max-width: 560px;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Reversed layout */
+.reversed .container {
+  direction: rtl;
+}
+
+.reversed .content {
+  direction: ltr;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2xl);
+    text-align: center;
+  }
+
+  .content {
+    align-items: center;
+    order: 1;
+  }
+
+  .description {
+    max-width: 100%;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+
+  .imageWrapper {
+    order: 0;
+  }
+
+  .image {
+    max-width: 400px;
+  }
+
+  .title {
+    font-size: var(--text-4xl);
+  }
+
+  .reversed .container {
+    direction: ltr;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 100px 0 60px;
+  }
+
+  .title {
+    font-size: var(--text-3xl);
+  }
+
+  .description {
+    font-size: var(--text-base);
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: var(--text-2xl);
+  }
+
+  .actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .actions a {
+    width: 100%;
+  }
+
+  .image {
+    max-width: 300px;
+  }
+}
