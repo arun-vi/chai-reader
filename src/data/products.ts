@@ -1,5 +1,5 @@
 import { Product } from "@/types/product";
-
+import Arrival from "../../public/images/arrival-img1.png";
 export const products: Product[] = [
   {
     id: 1,
@@ -7,7 +7,7 @@ export const products: Product[] = [
     description: "A clash of armies, a battle of gods, and the rage of a hero fuel this epic tale of war. When a leader's pride ignites a conflict, the greatest warrior withdraws, leaving his comrades to face devastating losses. Explore a world of mighty heroes and bitter rivalries, where courage and honor are tested by fate. Witness the brutal dance of battle, the clash of bronze, and the complex ties that bind even enemies. Can a prophecy alter the course of war, or is destiny set in stone?",
     price: 15,
     originalPrice: 20,
-    image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=400&q=80",
+    image: "/images/seller-img1.png",
     category: "classics",
     rating: 4.8,
     reviews: 189,
@@ -32,7 +32,7 @@ export const products: Product[] = [
     description: "The past has a way of catching up to us, no matter how fast we run. In this gripping mystery thriller, detective Marcus Vance uncovers a series of forgotten cold cases that lead back to his own childhood. As the secrets unravel, Vance finds himself in a deadly game of cat and mouse with a killer who knows his every move.",
     price: 12,
     originalPrice: 18,
-    image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=400&q=80",
+    image: "/images/seller-img2.png",
     category: "crime-fiction",
     rating: 4.6,
     reviews: 245,
@@ -56,7 +56,7 @@ export const products: Product[] = [
     description: "Beloved by millions, this timeless classic holds the key to all you desire and everything you wish to accomplish. This is the book that reveals the secret to personal wealth. Countless readers have been helped by the famous 'Babylonian parables,' hailed as the greatest of all inspirational works on the subject of thrift, financial planning, and personal wealth.",
     price: 10,
     originalPrice: 14,
-    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=400&q=80",
+    image: "/images/seller-img3.png",
     category: "business",
     rating: 4.7,
     reviews: 1205,
@@ -79,7 +79,7 @@ export const products: Product[] = [
     title: "Harry Potter and the Sorcerer's Stone",
     description: "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry.",
     price: 22,
-    image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=400&q=80",
+    image: "/images/seller-img4.png",
     category: "kids",
     rating: 4.9,
     reviews: 5840,
@@ -103,7 +103,7 @@ export const products: Product[] = [
     description: "Doing well with money isn't necessarily about what you know. It's about how you behave. And behavior is hard to teach, even to really smart people. Money—investing, personal finance, and business decisions—is typically taught as a math-based field, where data and formulas tell us exactly what to do. But in the real world people don't make financial decisions on a spreadsheet. They make them at the dinner table, or in a meeting room, where personal history, your own unique view of the world, ego, pride, marketing, and odd incentives are scrambled together.",
     price: 16,
     originalPrice: 22,
-    image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=400&q=80",
+    image: "/images/seller-img5.png",
     category: "self-help",
     rating: 4.7,
     reviews: 980,
@@ -127,7 +127,7 @@ export const products: Product[] = [
     description: "This book is a must-have for civil services aspirants and students of political science. It covers all aspects of the Indian political system, constitutional provisions, governance structures, and recent amendments with absolute clarity and detail.",
     price: 28,
     originalPrice: 32,
-    image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=400&q=80",
+    image: "/images/arrival-img6.png",
     category: "academics",
     rating: 4.8,
     reviews: 3105,

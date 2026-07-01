@@ -61,7 +61,7 @@ export default function Card({ product, variant = "default" }: CardProps) {
 
         <div className={styles.content}>
           <div className={styles.headerInfo}>
-            <span className={styles.author}>{product.author || "Unknown Author"}</span>
+            {/* <span className={styles.author}>{product.author || "Unknown Author"}</span> */}
             <Link href={`/products/${product.id}`}>
               <h3 className={styles.title}>{product.title}</h3>
             </Link>
@@ -69,10 +69,10 @@ export default function Card({ product, variant = "default" }: CardProps) {
           </div>
 
           <div className={styles.footerInfo}>
-            <div className={styles.rating}>
+            {/* <div className={styles.rating}>
               <div className={styles.stars}>{renderStars()}</div>
               <span className={styles.reviews}>({product.reviews})</span>
-            </div>
+            </div> */}
             <Link href={`/products/${product.id}`} className={styles.chatBtn}>
               Read & Chat
             </Link>

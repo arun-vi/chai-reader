@@ -92,42 +92,42 @@ export default function Home() {
   return (
     <div className={styles.home}>
       {/* Hero Banner Section */}
+    <div className={styles.heroBG}>
       <Hero
         title="The Echo of our Silent Pages"
         subtitle="The Echo of our Silent Pages"
         description="A global publishing technology pavilion designed to run alongside major international book fairs. Discover thousands of stories and connect with their creators."
         ctaLink="/products"
+        imageSrc="/images/heroRight.png"
       />
 
       {/* Shop by Genre pills section */}
       <section className={styles.genresSection}>
-        <h3 className={styles.genreTitle}>Shop into Different Genres</h3>
+        <h3 className={styles.genreTitle}>Dive into Different Genres</h3>
         <div className={styles.genreBar}>
-          <Link href="/products" className={styles.genrePill}>
-            All Genres
-          </Link>
-          {categories.map((cat) => (
+          {categories.map((cat, index) => (
             <Link
               key={cat.id}
               href={`/products?category=${cat.slug}`}
               className={styles.genrePill}
             >
-              {cat.name}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={`/images/genres-img${index + 1}.png`}
+                alt={cat.name}
+              />
             </Link>
           ))}
         </div>
       </section>
-
+    </div>
       {/* New Arrivals Cover Gallery */}
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
           <div className={styles.titleGroup}>
-            <h2>New Arrivals</h2>
-            <p>Trending books among readers</p>
+            <h6 className={styles.arrivalHeading}>New Arrivals</h6>
+            <span className={styles.arrivalSub}>Trending books among readers</span>
           </div>
-          <Link href="/products?filter=new" className={styles.viewAll}>
-            View All <FiArrowRight />
-          </Link>
         </div>
         <div className={styles.scrollContainer}>
           {newArrivals.map((book) => (

@@ -35,19 +35,5 @@ export const categories: Category[] = [
     slug: "kids",
     image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=150&q=80",
     count: 32,
-  },
-  {
-    id: 6,
-    name: "Crime Fiction",
-    slug: "crime-fiction",
-    image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=150&q=80",
-    count: 10,
-  },
-  {
-    id: 7,
-    name: "Academics",
-    slug: "academics",
-    image: "https://images.unsplash.com/photo-1618666012174-83b441c0bc76?auto=format&fit=crop&w=150&q=80",
-    count: 28,
   }
 ];
