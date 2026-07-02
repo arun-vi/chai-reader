@@ -135,7 +135,51 @@
 /* Recommended For You Section */
 .recommendedSection {
   margin-bottom: 4rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow-x: auto;
+  gap: 1.5rem;
+  padding: 0.5rem 0.25rem 1.5rem;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
 }
+
+.recommendedSection::-webkit-scrollbar {
+  display: none;
+}
+
+.recommendedCard {
+  flex-shrink: 0;
+  width: 800px;
+  min-width: 800px;
+}
+
+.recBookImages {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 0.25rem 0;
+  scrollbar-width: none;
+}
+
+.recBookImages::-webkit-scrollbar {
+  display: none;
+}
+
+.recImage {
+  flex-shrink: 0;
+  width: 173px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform var(--transition-fast);
+}
+
+.recImage:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
 .arrivalHeading {
   font-size: 30px;
   line-height: 100%;
@@ -151,7 +195,7 @@
 .recommendedCard {
   background: linear-gradient(135deg, #FFF0E6 0%, #E6F5FF 100%);
   border-radius: 24px;
-  padding: 3rem;
+  padding: 26px;
   border: 1px solid rgba(0, 0, 0, 0.02);
 }
 
@@ -164,30 +208,27 @@
 
 .recTag {
   font-family: var(--font-primary);
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #ef4444;
+  font-size: 30px;
+  line-height: 100%;
+  font-weight: 600;
+  color: #1E1E1E;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   margin-bottom: 0.5rem;
 }
 
-.recTitle {
-  font-family: var(--font-primary);
-  font-size: 2rem;
-  font-weight: 800;
-  color: #2B2638;
-  line-height: 1.3;
-  margin-bottom: 1rem;
-}
-
 .recDesc {
-  font-size: 0.95rem;
-  color: #696559;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+  font-size: 18px;
+  color: #404040;
+  line-height: 24px;
+  font-weight: 400;
+  margin-bottom: 34px;
 }
-
+.cardContainerRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 /* Speak with Authors Section */
 .authorsSection {
   margin-bottom: 4rem;
@@ -303,10 +344,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 90px;
+  width: 141px;
+  height: 141px;
   flex-shrink: 0;
   text-decoration: none;
   transition: transform var(--transition-fast);
+  position: relative;
 }
 
 .authorAvatarCard:hover {
@@ -314,9 +357,9 @@
 }
 
 .avatarImage {
-  width: 72px;
-  height: 72px;
-  border-radius: 18px; /* rounded-square style avatar */
+  width: 100%;
+  height: 100%;
+  border-radius: 12px; 
   object-fit: cover;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   margin-bottom: 0.5rem;
@@ -331,11 +374,18 @@
 
 .avatarName {
   font-family: var(--font-primary);
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #2B2638;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 500;
+  color: #ffffff;
   text-align: center;
   line-height: 1.3;
+  position: absolute;
+  bottom: 0.5px;
+  background: rgba(41, 41, 41, 0.5);
+  width: 99%;
+  border-radius: 12px;
+  padding: 10px 0px;
 }
 
 @media (max-width: 768px) {
@@ -347,7 +397,7 @@
     gap: 2rem;
   }
   .recommendedCard {
-    padding: 2rem;
+    padding: 18px;
     text-align: center;
   }
   .recContent {

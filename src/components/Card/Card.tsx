@@ -82,6 +82,21 @@ export default function Card({ product, variant = "default" }: CardProps) {
     );
   }
 
+  if (variant === "compact") {
+    return (
+      <div className={`${styles.card} ${styles.compact}`}>
+        <Link href={`/products/${product.id}`}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={product.image}
+            alt={product.title}
+            className={styles.compactImage}
+          />
+        </Link>
+      </div>
+    );
+  }
+
   return (
       <div className={`${styles.card} ${styles[variant]} ${variant === "simple" ? styles.simple : ""}`}>
         <div className={`${styles.imageWrapper} ${variant === "simple" ? styles.simpleImageWrapper : ""}`}>
@@ -110,7 +125,7 @@ export default function Card({ product, variant = "default" }: CardProps) {
           <h3 className={styles.title}>{product.title}</h3>
         </Link>
         <span className={styles.authorName}>Morgan Housel </span>
-        {variant !== "compact" && variant !== "simple" && (
+        {variant !== "simple" && (
           <div className={styles.rating}>
             <div className={styles.stars}>{renderStars()}</div>
             <span className={styles.reviews}>({product.reviews})</span>
