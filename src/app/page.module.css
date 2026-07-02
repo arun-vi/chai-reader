@@ -86,12 +86,32 @@
   width: 160px;
   flex-shrink: 0;
   transition: all var(--transition-fast);
+  position: relative;
 }
 
 .bookCoverWrapper:hover {
   transform: translateY(-4px) scale(1.02);
 }
-
+.contentBlock {
+  position: absolute;
+  bottom: 0px;
+  background: rgba(41, 41, 41, 0.5);
+  width: 100%;
+  padding: 10px;
+  border-radius: 7px;
+}
+.contentBlock h6 {
+  font-size: 13px;
+  line-height: 19px;
+  font-weight: 500;
+  color: #ffffff;
+}
+.contentBlock p {
+  color: #BCB3C7;
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: 400;
+}
 .coverImage {
   width: 100%;
   height: 238px;

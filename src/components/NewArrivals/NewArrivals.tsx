@@ -34,6 +34,10 @@ export default function NewArrivals({ books }: NewArrivalsProps) {
                 className={styles.coverImage}
               />
             </Link>
+            <div className={styles.contentBlock}>
+              <h6>The Psychology of...</h6>
+              <p>by Morgan Housel </p>
+            </div>
           </div>
         ))}
       </div>

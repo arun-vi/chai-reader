@@ -3,7 +3,7 @@
 import React, { use } from "react";
 import Link from "next/link";
 import { FiChevronRight } from "react-icons/fi";
-import { products } from "@/data/products";
+import { getAllProducts } from "@/data/products";
 import Card from "@/components/Card/Card";
 import styles from "./page.module.css";
 
@@ -15,9 +15,10 @@ export default function AuthorDetailPage({ params }: PageProps) {
   const resolvedParams = use(params);
   const authorName = decodeURIComponent(resolvedParams.name);
 
-  // Find books by this author
-  const authorBooks = products.filter(
-    (p) => p.author?.toLowerCase() === authorName.toLowerCase()
+  // Find books by this author with category "author-page"
+  const allProducts = getAllProducts();
+  const authorBooks = allProducts.filter(
+    (p) => p.author?.toLowerCase() === authorName.toLowerCase() && p.category === "author-page"
   );
 
   // Find author details from the first book by them
@@ -64,8 +65,8 @@ export default function AuthorDetailPage({ params }: PageProps) {
 
       {/* Author Profile Card Block */}
       <div className={styles.authorProfileCard}>
-        <div className="row align-items-center g-4 m-0 w-100">
-          <div className="col-12 col-md-4 p-0 d-flex justify-content-center justify-content-md-start">
+        <div className={styles.authorRowContainer}>
+          <div>
             <div className={styles.portraitWrapper}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -75,7 +76,7 @@ export default function AuthorDetailPage({ params }: PageProps) {
               />
             </div>
           </div>
-          <div className="col-12 col-md-8 p-0">
+          <div>
             <div className={styles.profileContent}>
               <h1 className={styles.authorName}>{authorName}</h1>
               <p className={styles.authorBioText}>{authorBio}</p>
@@ -93,7 +94,7 @@ export default function AuthorDetailPage({ params }: PageProps) {
         </div>
       </div>
 
-      {/* Grid: Our New Releases */}
+      {/* Grid: Author's Popular Works */}
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
           <div className={styles.titleGroup}>
@@ -102,7 +103,7 @@ export default function AuthorDetailPage({ params }: PageProps) {
           </div>
         </div>
         <div className="row g-4">
-          {authorBooks.map((book) => (
+          {authorBooks.slice(1, 10).map((book) => (
             <div key={book.id} className="col-6 col-sm-4 col-md-3 col-lg-2.4 flex-fill">
               <Card product={book} />
             </div>
@@ -110,16 +111,16 @@ export default function AuthorDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Horizontal List: Our New Releases */}
+      {/* Horizontal List: Latest Publications */}
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
           <div className={styles.titleGroup}>
-            <h2>Our New Releases</h2>
-            <p>Trending books among readers</p>
+            <h2>Latest Publications</h2>
+            <p>Recent releases and editions from {authorName}</p>
           </div>
         </div>
         <div className="row g-4">
-          {authorBooks.map((book) => (
+          {authorBooks.slice(11, 16).map((book) => (
             <div key={book.id} className="col-12 col-lg-6">
               <Card product={book} variant="horizontal" />
             </div>

@@ -252,3 +252,22 @@
     width: 100%;
   }
 }
+.mightContent {
+  padding: 3px;
+}
+.mightTitle {
+  font-size: 10px;
+  font-weight: 500;
+  color: #303030;
+  margin: 10px 0px 0px 0px;
+}
+.mightAuthorName {
+  font-size: 10px;
+  line-height: 11px;
+  font-weight: 500;
+  color: #1142BE;
+}
+.mightLinks {
+  margin-bottom: 0px;
+  padding: 5px;
+}
