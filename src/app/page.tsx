@@ -1,37 +1,22 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import { FiArrowRight } from "react-icons/fi";
+import React from "react";
+import dynamic from "next/dynamic";
 import Hero from "@/components/Hero/Hero";
-import Loader from "@/components/Loader/Loader";
 import GenresBar from "@/components/GenresBar/GenresBar";
 import NewArrivals from "@/components/NewArrivals/NewArrivals";
-import RecommendedForYou from "@/components/RecommendedForYou/RecommendedForYou";
-import BestSellers from "@/components/BestSellers/BestSellers";
-import SpeakWithAuthors from "@/components/SpeakWithAuthors/SpeakWithAuthors";
-import CategorySection from "@/components/CategorySection/CategorySection";
-import FamousAuthors from "@/components/FamousAuthors/FamousAuthors";
 import { products } from "@/data/products";
 import { categories } from "@/data/categories";
-import { delay } from "@/utils/helpers";
 import styles from "./page.module.css";
 
+// Lazy load below-fold components with no SSR to reduce initial bundle
+const RecommendedForYou = dynamic(() => import("@/components/RecommendedForYou/RecommendedForYou"), { ssr: false });
+const BestSellers = dynamic(() => import("@/components/BestSellers/BestSellers"), { ssr: false });
+const SpeakWithAuthors = dynamic(() => import("@/components/SpeakWithAuthors/SpeakWithAuthors"), { ssr: false });
+const CategorySection = dynamic(() => import("@/components/CategorySection/CategorySection"), { ssr: false });
+const FamousAuthors = dynamic(() => import("@/components/FamousAuthors/FamousAuthors"), { ssr: false });
+
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const load = async () => {
-      await delay(400);
-      setIsLoading(false);
-    };
-    load();
-  }, []);
-
-  if (isLoading) {
-    return <Loader fullPage variant="spinner" text="Opening ChaiReader..." />;
-  }
-
   const speakAuthors = [
     {
       author: "J.K. Rowling",
@@ -86,9 +71,15 @@ export default function Home() {
                product.id === 6 ? "/images/arrival-img6.png" :
                product.image
       }))} />
-      <RecommendedForYou />
-      <BestSellers books={products.filter(p => p.rating >= 4.6).slice(0, 5)} />
-      <SpeakWithAuthors authors={speakAuthors} />
+      <React.Suspense fallback={<div style={{ height: "200px", opacity: 0.5 }} />}>
+        <RecommendedForYou />
+      </React.Suspense>
+      <React.Suspense fallback={<div style={{ height: "200px", opacity: 0.5 }} />}>
+        <BestSellers books={products.filter(p => p.rating >= 4.6).slice(0, 5)} />
+      </React.Suspense>
+      <React.Suspense fallback={<div style={{ height: "200px", opacity: 0.5 }} />}>
+        <SpeakWithAuthors authors={speakAuthors} />
+      </React.Suspense>
 
       <CategorySection
         title="Crime Fiction"

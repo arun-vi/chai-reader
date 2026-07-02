@@ -6,6 +6,7 @@ import { FiArrowRight } from "react-icons/fi";
 import Card from "@/components/Card/Card";
 import styles from "@/app/page.module.css";
 import { Product } from "@/types/product";
+import Image from "next/image";
 
 interface CategorySectionProps {
   title: string;
@@ -22,9 +23,22 @@ export default function CategorySection({ title, description, books, viewAllHref
           <h2>{title}</h2>
           {description && <p>{description}</p>}
         </div>
-        <Link href={viewAllHref} className={styles.viewAll}>
-          View All <FiArrowRight />
-        </Link>
+        <div className={styles.arrowContainer}>
+          <Image 
+          src="/icons/left-arrow-circle.svg" 
+          alt="arrow"
+          width={40}
+          height={40}
+          className={styles.arrowIcon}
+          />
+          <Image
+          src="/icons/right-arrow-circle.svg" 
+          alt="arrow"
+          width={40}
+          height={40}
+          className={styles.arrowIcon}
+          />
+        </div>
       </div>
       <div className={styles.scrollRow}>
         {books.map((book) => (
