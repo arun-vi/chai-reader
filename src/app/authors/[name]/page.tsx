@@ -15,11 +15,8 @@ export default function AuthorDetailPage({ params }: PageProps) {
   const resolvedParams = use(params);
   const authorName = decodeURIComponent(resolvedParams.name);
 
-  // Find books by this author
-  const allProducts = getAllProducts();
-  const authorBooks = allProducts.filter(
-    (p) => p.author?.toLowerCase() === authorName.toLowerCase() && p.category === "author-page"
-  );
+  // Get the static book cards
+  const authorBooks = getAllProducts();
 
   // Find author details
   const firstBook = authorBooks[0];

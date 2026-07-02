@@ -424,3 +424,13 @@
     align-items: center;
   }
 }
+
+.arrowContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.arrowIcon {
+  cursor: pointer;
+}

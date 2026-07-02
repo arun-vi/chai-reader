@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import styles from "@/app/page.module.css";
+import Image from "next/image";
 
 interface SpeakAuthor {
   author: string;
@@ -22,6 +23,22 @@ export default function SpeakWithAuthors({ authors }: SpeakWithAuthorsProps) {
       <div className={styles.sectionHeader}>
         <div className={styles.titleGroup}>
           <h2>Speak with Authors</h2>
+        </div>
+        <div className={styles.arrowContainer}>
+          <Image
+          src="/icons/left-arrow-circle.svg" 
+          alt="arrow"
+          width={40}
+          height={40}
+          className={styles.arrowIcon}
+          />
+          <Image 
+          src="/icons/right-arrow-circle.svg" 
+          alt="arrow"
+          width={40}
+          height={40}
+          className={styles.arrowIcon}
+          />
         </div>
       </div>
       <div className={styles.authorList}>

@@ -99,7 +99,8 @@
   display: block;
 }
 .links {
-  height: 16px;
+  display: block;
+  text-decoration: none;
   margin-bottom: 5px;
 }
 .title {
@@ -117,6 +118,10 @@
 }
 
 .title:hover {
+  color: #3b82f6;
+}
+
+.links:hover .title {
   color: #3b82f6;
 }
 .authorName {
