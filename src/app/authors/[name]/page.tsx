@@ -15,31 +15,18 @@ export default function AuthorDetailPage({ params }: PageProps) {
   const resolvedParams = use(params);
   const authorName = decodeURIComponent(resolvedParams.name);
 
-  // Find books by this author with category "author-page"
+  // Find books by this author
   const allProducts = getAllProducts();
   const authorBooks = allProducts.filter(
     (p) => p.author?.toLowerCase() === authorName.toLowerCase() && p.category === "author-page"
   );
 
-  // Find author details from the first book by them
+  // Find author details
   const firstBook = authorBooks[0];
-
-  if (authorBooks.length === 0) {
-    return (
-      <div className={styles.notFound}>
-        <h2>Author not found</h2>
-        <p>We couldn't find any books by "{authorName}" in our directory.</p>
-        <Link href="/" className={styles.backBtn}>
-          Back to Browse
-        </Link>
-      </div>
-    );
-  }
-
-  const authorImage = firstBook.authorImage || "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=300&h=300&q=80";
-  const authorBio = firstBook.authorBio || `${authorName} is an acclaimed writer whose literature works continue to inspire readers worldwide.`;
-  const authorTags = firstBook.tags || ["Author", "Literature", "Bestseller"];
-
+  const authorImage = firstBook?.authorImage || "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=300&h=300&q=80";
+  const authorBio = firstBook?.authorBio || `${authorName} is an acclaimed writer whose literature works continue to inspire readers worldwide.`;
+  const authorTags = firstBook?.tags || ["Author", "Literature", "Bestseller"];
+  
   return (
     <div className={styles.authorPage}>
       {/* Breadcrumb Navigation */}
@@ -83,7 +70,7 @@ export default function AuthorDetailPage({ params }: PageProps) {
               
               {/* Genre and Topic tags */}
               <div className={styles.tagsContainer}>
-                {authorTags.map((tag, idx) => (
+                {(authorTags || ["Author", "Literature", "Bestseller"]).map((tag, idx) => (
                   <span key={idx} className={styles.tag}>
                     {tag}
                   </span>
@@ -102,12 +89,14 @@ export default function AuthorDetailPage({ params }: PageProps) {
             <p>Trending books among readers</p>
           </div>
         </div>
-        <div className="row g-4">
-          {authorBooks.slice(1, 10).map((book) => (
-            <div key={book.id} className="col-6 col-sm-4 col-md-3 col-lg-2.4 flex-fill">
-              <Card product={book} />
-            </div>
-          ))}
+        <div className={styles.newReleaseRow}>
+          {
+            authorBooks.slice(0, 10).map((book) => (
+              <div key={book.id}>
+                <Card product={book} variant="simple" />
+              </div>
+            ))
+          }
         </div>
       </section>
 
@@ -120,11 +109,13 @@ export default function AuthorDetailPage({ params }: PageProps) {
           </div>
         </div>
         <div className="row g-4">
-          {authorBooks.slice(11, 16).map((book) => (
-            <div key={book.id} className="col-12 col-lg-6">
-              <Card product={book} variant="horizontal" />
-            </div>
-          ))}
+          {           
+            authorBooks.slice(10, 16).map((book) => (
+              <div key={book.id} className="col-12 col-lg-6">
+                <Card product={book} variant="horizontal" />
+              </div>
+            ))
+          }
         </div>
       </section>
     </div>
