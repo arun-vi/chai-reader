@@ -20,7 +20,116 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       {/* Background SVG Waves at the top of the footer or bottom */}
-      <div className={styles.wavesContainer}>
+
+
+      <div className={styles.footerContent}>
+        <div className="container-chai">
+          <div className="row g-4">
+            {/* Brand column */}
+            <div className="col-12 col-md-6 col-lg-4">
+              <div className={styles.brand}>
+                <Link href="/" className={styles.logo}>
+                  <Image
+                    src="/icons/logo.svg"
+                    alt="ChaiReader"
+                    width={160}
+                    height={32}
+                  />
+                </Link>
+                <p className={styles.description}>
+                  Chai Reader is an AI-powered book commerce platform designed to transform how people discover and experience books—through reading, chatting with books, and more. It is owned and operated by Ailaysa Technologies Pvt Ltd.
+                </p>
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div className="col-12 col-md-6 col-lg-2">
+              <div className={styles.column}>
+                <h3 className={styles.columnTitle}>Quick Links</h3>
+                <ul className={styles.linkList}>
+                  <li>
+                    <Link href="/about" className={styles.link}>
+                      About
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/contact" className={styles.link}>
+                      Contact
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/" className={styles.link}>
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/products" className={styles.link}>
+                      FAQ
+                    </Link>
+                  </li>
+                   <li>
+                    <Link href="/products" className={styles.link}>
+                      Support / Help Center
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Categories */}
+            <div className="col-12 col-md-6 col-lg-3">
+              <div className={styles.column}>
+                <h3 className={styles.columnTitle}>For Partners</h3>
+                <ul className={styles.linkList}>
+                  <li>
+                    <Link href="/products?category=classics" className={styles.link}>
+                      For Authors
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/products?category=self-help" className={styles.link}>
+                      For Publishers
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/products?category=business" className={styles.link}>
+                      Become a Partner
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Contact Info */}
+            <div className="col-12 col-md-6 col-lg-3">
+              <div className={styles.column}>
+                <h3 className={styles.columnTitle}>Legal</h3>
+                <ul className={styles.contactList}>
+                  <li>
+                    <FiMail className={styles.contactIcon} />
+                    <a href="mailto:hello@chaireader.com" className={styles.link}>
+                      Terms & Conditions
+                    </a>
+                  </li>
+                  <li>
+                    <FiPhone className={styles.contactIcon} />
+                    <a href="tel:+15551234567" className={styles.link}>
+                      Privacy Policy
+                    </a>
+                  </li>
+                  <li>
+                    <FiMapPin className={styles.contactIcon} />
+                    <span className={styles.link}>
+                      Cookie Policy
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+            <div className={styles.wavesContainer}>
         <svg
           className={styles.waves}
           xmlns="http://www.w3.org/2000/svg"
@@ -56,173 +165,6 @@ export default function Footer() {
             <use xlinkHref="#gentle-wave" x="48" y="7" fill="#E0F2FE" />
           </g>
         </svg>
-      </div>
-
-      <div className={styles.footerContent}>
-        <div className="container-chai">
-          <div className="row g-4">
-            {/* Brand column */}
-            <div className="col-12 col-md-6 col-lg-3">
-              <div className={styles.brand}>
-                <Link href="/" className={styles.logo}>
-                  <Image
-                    src="/icons/logo.svg"
-                    alt="ChaiReader"
-                    width={160}
-                    height={32}
-                  />
-                </Link>
-                <p className={styles.description}>
-                  ChaiReader is an interactive book pavilion designed to run
-                  alongside major international book fairs. Explore a world of
-                  stories, speak with your favorite authors, and join the conversation.
-                </p>
-                <div className={styles.social}>
-                  <a
-                    href="https://facebook.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.socialLink}
-                    aria-label="Facebook"
-                  >
-                    <FaFacebook />
-                  </a>
-                  <a
-                    href="https://twitter.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.socialLink}
-                    aria-label="Twitter"
-                  >
-                    <FaTwitter />
-                  </a>
-                  <a
-                    href="https://instagram.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.socialLink}
-                    aria-label="Instagram"
-                  >
-                    <FaInstagram />
-                  </a>
-                  <a
-                    href="https://linkedin.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.socialLink}
-                    aria-label="LinkedIn"
-                  >
-                    <FaLinkedinIn />
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Quick Links */}
-            <div className="col-12 col-md-6 col-lg-3">
-              <div className={styles.column}>
-                <h3 className={styles.columnTitle}>Quick Links</h3>
-                <ul className={styles.linkList}>
-                  <li>
-                    <Link href="/" className={styles.link}>
-                      Home
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/products" className={styles.link}>
-                      All Books
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/about" className={styles.link}>
-                      About Us
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/contact" className={styles.link}>
-                      Contact
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Categories */}
-            <div className="col-12 col-md-6 col-lg-3">
-              <div className={styles.column}>
-                <h3 className={styles.columnTitle}>Categories</h3>
-                <ul className={styles.linkList}>
-                  <li>
-                    <Link href="/products?category=classics" className={styles.link}>
-                      Classics
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/products?category=self-help" className={styles.link}>
-                      Self Help
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/products?category=business" className={styles.link}>
-                      Business
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/products?category=tech" className={styles.link}>
-                      Tech & Science
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/products?category=kids" className={styles.link}>
-                      Kids & Fantasy
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Contact Info */}
-            <div className="col-12 col-md-6 col-lg-3">
-              <div className={styles.column}>
-                <h3 className={styles.columnTitle}>Contact Us</h3>
-                <ul className={styles.contactList}>
-                  <li>
-                    <FiMail className={styles.contactIcon} />
-                    <a href="mailto:hello@chaireader.com" className={styles.link}>
-                      hello@chaireader.com
-                    </a>
-                  </li>
-                  <li>
-                    <FiPhone className={styles.contactIcon} />
-                    <a href="tel:+15551234567" className={styles.link}>
-                      +1 (555) 123-4567
-                    </a>
-                  </li>
-                  <li>
-                    <FiMapPin className={styles.contactIcon} />
-                    <span className={styles.link}>
-                      123 Book Fair Lane, London, UK
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom copyright row */}
-          <div className={styles.bottom}>
-            <p className={styles.copyright}>
-              &copy; {new Date().getFullYear()} ChaiReader. All rights reserved.
-            </p>
-            <button
-              className={styles.scrollTop}
-              onClick={scrollToTop}
-              aria-label="Scroll to top"
-            >
-              <FiArrowUp size={20} />
-            </button>
-          </div>
-        </div>
       </div>
     </footer>
   );

@@ -13,7 +13,6 @@
   padding: 3rem 4rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.015);
   position: relative;
-  height: 237px;
 }
 
 .content {
@@ -97,8 +96,12 @@
   border-radius: 50%;
   z-index: 1;
 }
-
-@media (max-width: 1199px) {
+@media (min-width: 1200px) {
+  .heroRowContainer {
+    height: 237px;
+  }
+}
+@media (max-width: 991px) {
   .heroRowContainer {
     flex-wrap: wrap;
   }

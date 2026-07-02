@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
 import styles from "@/app/page.module.css";
 import Image from "next/image";
@@ -18,6 +18,17 @@ interface SpeakWithAuthorsProps {
 }
 
 export default function SpeakWithAuthors({ authors }: SpeakWithAuthorsProps) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: "left" | "right") => {
+    if (!scrollRef.current) return;
+    const amount = 300;
+    scrollRef.current.scrollBy({
+      left: direction === "left" ? -amount : amount,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <section className={styles.authorsSection}>
       <div className={styles.sectionHeader}>
@@ -26,22 +37,24 @@ export default function SpeakWithAuthors({ authors }: SpeakWithAuthorsProps) {
         </div>
         <div className={styles.arrowContainer}>
           <Image
-          src="/icons/left-arrow-circle.svg" 
-          alt="arrow"
-          width={40}
-          height={40}
-          className={styles.arrowIcon}
+            src="/icons/left-arrow-circle.svg" 
+            alt="scroll left"
+            width={40}
+            height={40}
+            className={styles.arrowIcon}
+            onClick={() => scroll("left")}
           />
           <Image 
-          src="/icons/right-arrow-circle.svg" 
-          alt="arrow"
-          width={40}
-          height={40}
-          className={styles.arrowIcon}
+            src="/icons/right-arrow-circle.svg" 
+            alt="scroll right"
+            width={40}
+            height={40}
+            className={styles.arrowIcon}
+            onClick={() => scroll("right")}
           />
         </div>
       </div>
-      <div className={styles.authorList}>
+      <div className={styles.authorList} ref={scrollRef}>
         {authors.map((authorData, index) => (
           <div key={index} className={styles.authorBookCard}>
             <div className={styles.authorPortraitWrapper}>

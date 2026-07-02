@@ -154,6 +154,20 @@
   background: #1e1b27;
 }
 
+@media (max-width: 991px) {
+  .authorRowContainer {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  .newReleaseRow {
+    align-items: center;
+    justify-content: center;
+  }
+  .sectionHeader {
+    justify-content: center;
+  }
+}
 @media (max-width: 768px) {
   .authorPage {
     padding: 1rem 1rem 3rem;
