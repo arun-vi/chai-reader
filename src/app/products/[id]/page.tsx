@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use, useState } from "react";
+import React, { use, useRef, useState } from "react";
 import Link from "next/link";
 import { FiHeart, FiStar, FiChevronRight } from "react-icons/fi";
 import { products } from "@/data/products";
@@ -218,7 +218,10 @@ export default function ProductDetailPage({ params }: PageProps) {
       {/* You Might Also Like Slider grid */}
       <section className={styles.relatedSection}>
         <h2 className={styles.relatedTitle}>You might also like</h2>
-        <div className={styles.finalContainerRow}>
+        <div
+          className={styles.finalContainerRow}
+          style={{ overflowX: "auto", scrollBehavior: "smooth", scrollbarWidth: "none" }}
+        >
           {finalRelated.map((relatedBook) => (
             <div key={relatedBook.id}>
               <Card product={relatedBook} variant="might" />
