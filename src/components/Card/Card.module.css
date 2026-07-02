@@ -196,21 +196,23 @@
 /* Horizontal Layout variant */
 .horizontal {
   flex-direction: row;
-  height: auto;
-  align-items: stretch;
+  align-items: center;
+  padding: 12px;
+  gap: 10px;
 }
 
 .horizontal .imageWrapper {
-  width: 150px;
+  width: 92px;
+  height: 136px;
   aspect-ratio: auto;
   flex-shrink: 0;
 }
 
 .horizontal .content {
-  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 0px;
 }
 
 .horizontal .title {
@@ -223,7 +225,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 1rem;
 }
 
 .horizontal .rating {
@@ -231,8 +232,7 @@
 }
 
 .horizontal .chatBtn {
-  width: auto;
-  padding: 0.6rem 2rem;
+  width: 100%;
 }
 
 @media (max-width: 576px) {

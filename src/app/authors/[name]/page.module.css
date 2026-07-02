@@ -177,3 +177,13 @@
     justify-content: center;
   }
 }
+.newReleaseRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.horizontalBox {
+  width: 32%;
+}
