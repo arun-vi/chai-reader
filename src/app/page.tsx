@@ -26,6 +26,21 @@ export default function Home() {
     return <Loader fullPage variant="spinner" text="Opening ChaiReader..." />;
   }
 
+  // Create recommended products with custom images
+  const recommendedProducts1 = [
+    { ...products[0], image: "/images/recommend-img1.png" },
+    { ...products[1], image: "/images/recommend-img2.png" },
+    { ...products[2], image: "/images/recommend-img3.png" },
+    { ...products[3], image: "/images/recommend-img4.png" }
+  ];
+
+  const recommendedProducts2 = [
+    { ...products[0], image: "/images/recommend-img5.png" },
+    { ...products[1], image: "/images/recommend-img6.png" },
+    { ...products[2], image: "/images/recommend-img7.png" },
+    { ...products[3], image: "/images/recommend-img8.png" }
+  ];
+
   // Filter books for different sections
   const newArrivals = products.slice(0, 6);
   const bestSellers = products.filter(p => p.rating >= 4.6).slice(0, 5);
@@ -33,34 +48,38 @@ export default function Home() {
   const nonFiction = products.filter(p => p.category === "self-help" || p.category === "business").slice(0, 6);
   const academics = products.filter(p => p.category === "academics").slice(0, 5);
   const business = products.filter(p => p.category === "business").slice(0, 5);
-  const techBooks = products.filter(p => p.category === "tech").slice(0, 5);
-  const classics = products.filter(p => p.category === "classics").slice(0, 5);
+  const techBooks = products.filter(p => p.category === "tech").slice(0, 6);
+  const classics = products.filter(p => p.category === "classic").slice(0, 6);
 
   // Extract unique authors
   const famousAuthors = [
     {
-      name: "ZeeverseVault",
-      avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&h=150&q=80"
+      name: "J.K. Rowling",
+      avatar: "/images/famous-auth1.png"
     },
     {
-      name: "Kathryn Bywaters",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80"
+      name: "Chetan Bhagat",
+      avatar: "/images/famous-auth2.png"
     },
     {
       name: "J.K. Rowling",
-      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150&q=80"
+      avatar: "/images/famous-auth3.png"
     },
     {
-      name: "Morgan Housel",
-      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&h=150&q=80"
+      name: "Arundhati Roy",
+      avatar: "/images/famous-auth4.png"
     },
     {
-      name: "George S. Clason",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80"
+      name: "Ashwin",
+      avatar: "/images/famous-auth5.png"
     },
     {
-      name: "H.C. Verma",
-      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&h=150&q=80"
+      name: "J.K. Rowling",
+      avatar: "/images/famous-auth1.png"
+    },
+    {
+      name: "Chetan Bhagat",
+      avatar: "/images/famous-auth2.png"
     }
   ];
 
@@ -148,26 +167,41 @@ export default function Home() {
       {/* Recommended For You Panel Card */}
       <section className={styles.recommendedSection}>
         <div className={styles.recommendedCard}>
-          <div className="row align-items-center g-4 recCardRow">
-            <div className="col-12 col-lg-5">
+          <div className="column align-items-center g-4 recCardRow">
+            <div className="col-12 col-lg-12">
               <div className={styles.recContent}>
                 <span className={styles.recTag}>Recommended For You</span>
-                <h2 className={styles.recTitle}>Find books you love and enjoy them.</h2>
                 <p className={styles.recDesc}>
-                  A curated list of books handpicked by our readers and literature experts specifically tailored for your reading journey.
+                  A global publishing technology pavilion designed to run alongside major international book fairs.
                 </p>
-                <Link href="/products?filter=recommended" className={styles.viewAll}>
-                  Explore Recommended <FiArrowRight />
-                </Link>
               </div>
             </div>
-            <div className="col-12 col-lg-7">
-              <div className="row g-3">
-                {products.slice(0, 3).map((book) => (
-                  <div key={book.id} className="col-12 col-sm-4">
-                    <Card product={book} variant="compact" />
-                  </div>
-                ))}
+            <div className="col-12 col-lg-12">
+              <div className={styles.recBookImages}>
+                <img src="/images/recommend-img1.png" alt="Recommend 1" className={styles.recImage} />
+                <img src="/images/recommend-img2.png" alt="Recommend 2" className={styles.recImage} />
+                <img src="/images/recommend-img3.png" alt="Recommend 3" className={styles.recImage} />
+                <img src="/images/recommend-img4.png" alt="Recommend 4" className={styles.recImage} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={styles.recommendedCard}>
+          <div className="column align-items-center g-4 recCardRow">
+            <div className="col-12 col-lg-12">
+              <div className={styles.recContent}>
+                <span className={styles.recTag}>Recommended For You</span>
+                <p className={styles.recDesc}>
+                  A global publishing technology pavilion designed to run alongside major international book fairs.
+                </p>
+              </div>
+            </div>
+            <div className="col-12 col-lg-12">
+              <div className={styles.recBookImages}>
+                <img src="/images/recommend-img5.png" alt="Recommend 5" className={styles.recImage} />
+                <img src="/images/recommend-img6.png" alt="Recommend 6" className={styles.recImage} />
+                <img src="/images/recommend-img7.png" alt="Recommend 7" className={styles.recImage} />
+                <img src="/images/recommend-img8.png" alt="Recommend 8" className={styles.recImage} />
               </div>
             </div>
           </div>
@@ -382,7 +416,7 @@ export default function Home() {
           <div className={styles.scrollRow}>
             {classics.map((book) => (
               <div key={book.id}>
-                <Card product={book} />
+                <Card product={book} variant="simple" />
               </div>
             ))}
           </div>
