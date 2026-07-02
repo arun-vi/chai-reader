@@ -76,7 +76,16 @@ export default function Home() {
         <GenresBar categories={categories} />
       </div>
 
-      <NewArrivals books={products.slice(0, 6)} />
+      <NewArrivals books={products.slice(0, 6).map(product => ({
+        ...product,
+        image: product.id === 1 ? "/images/arrival-img1.png" :
+               product.id === 2 ? "/images/arrival-img2.png" :
+               product.id === 3 ? "/images/arrival-img3.png" :
+               product.id === 4 ? "/images/arrival-img4.png" :
+               product.id === 5 ? "/images/arrival-img5.png" :
+               product.id === 6 ? "/images/arrival-img6.png" :
+               product.image
+      }))} />
       <RecommendedForYou />
       <BestSellers books={products.filter(p => p.rating >= 4.6).slice(0, 5)} />
       <SpeakWithAuthors authors={speakAuthors} />

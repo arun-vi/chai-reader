@@ -9,7 +9,7 @@ import styles from "./Card.module.css";
 
 interface CardProps {
   product: Product;
-  variant?: "default" | "compact" | "horizontal" | "simple";
+  variant?: "default" | "compact" | "horizontal" | "simple" | "might";
 }
 
 export default function Card({ product, variant = "default" }: CardProps) {
@@ -37,6 +37,25 @@ export default function Card({ product, variant = "default" }: CardProps) {
     e.stopPropagation();
     setIsLiked(!isLiked);
   };
+
+  if (variant === "might") {
+    return (
+      <div className={`${styles.card} ${styles.compact}`}>
+        <Link href={`/products/${product.id}`}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={product.image}
+            alt={product.title}
+            className={styles.compactImage}
+          />
+        </Link>
+        <div className={styles.mightContent}>
+          <h3 className={styles.mightTitle}>{product.title}</h3>
+        <span className={styles.mightAuthorName}>{product.author || "Unknown Author"} </span>
+        </div>
+      </div>
+    );
+  }
 
   if (variant === "horizontal") {
     return (
@@ -124,7 +143,7 @@ export default function Card({ product, variant = "default" }: CardProps) {
         <Link className={styles.links} href={`/products/${product.id}`}>
           <h3 className={styles.title}>{product.title}</h3>
         </Link>
-        <span className={styles.authorName}>Morgan Housel </span>
+        <span className={styles.authorName}>{product.author || "Unknown Author"} </span>
         {variant !== "simple" && (
           <div className={styles.rating}>
             <div className={styles.stars}>{renderStars()}</div>

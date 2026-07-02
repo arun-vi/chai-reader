@@ -1,6 +1,6 @@
 .detailPage {
   padding: 1.5rem 2rem 4rem;
-  background-color: #FAF9F5;
+  background-color: #ffffff;
 }
 
 /* Breadcrumbs */
@@ -116,22 +116,26 @@
 
 .title {
   font-family: var(--font-primary);
-  font-size: 2.25rem;
-  font-weight: 800;
-  color: #2B2638;
+  font-size: 28px;
+  font-weight: 600;
+  color: #402940;
   line-height: 1.2;
   margin: 0 0 0.5rem 0;
 }
 
 .authorLine {
-  font-size: 0.95rem;
-  color: #8C8A82;
+  font-size: 14px;
+  line-height: 100%;
+  font-weight: 500;
+  color: #6A6A6B;
   margin: 0;
 }
 
 .authorName {
-  color: #3b82f6;
-  font-weight: 600;
+  color: #202020;
+  font-size: 14px;
+  line-height: 100%;
+  font-weight: 500;
   cursor: pointer;
 }
 
@@ -177,12 +181,12 @@
 
 .tag {
   padding: 0.4rem 1rem;
-  background-color: #EBF5FF; /* Soft blue */
-  color: #2563EB; /* Deep blue */
+  background-color: #E0F4FF; /* Soft blue */
+  color: #1A1A1C; /* Deep blue */
   font-family: var(--font-primary);
-  font-size: 0.8rem;
-  font-weight: 500;
-  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 12px;
 }
 
 /* Section Blocks */
@@ -192,9 +196,10 @@
 
 .sectionTitle {
   font-family: var(--font-primary);
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #2B2638;
+  font-size: 24px;
+  line-height: 100%;
+  font-weight: 600;
+  color: #1E1E1E;
   margin: 0 0 1rem 0;
 }
 
@@ -210,15 +215,18 @@
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  font-size: 14px;
+  font-weight: 400;
+  color: #404040;
 }
 
 .readMoreBtn {
   background: transparent;
   border: none;
-  color: #3b82f6;
+  color: #184978;
   font-family: var(--font-primary);
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 500;
   cursor: pointer;
   padding: 0;
   margin-top: 0.5rem;
@@ -226,16 +234,13 @@
 
 /* Specs Table */
 .specsTable {
-  background: #ffffff;
-  border: 1px solid #F1EFE9;
   border-radius: 16px;
   overflow: hidden;
 }
 
 .specRow {
   display: flex;
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid #FAF9F5;
+  padding: 6px 1.5rem;
   font-size: 0.9rem;
 }
 
@@ -245,32 +250,31 @@
 
 .specLabel {
   width: 180px;
+  font-size: 16px;
   font-weight: 600;
-  color: #8C8A82;
+  color: #120F0F;
 }
 
 .specValue {
-  color: #2B2638;
-  font-weight: 500;
+  color: #2C2828;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 /* Author Card */
 .authorCard {
-  background: #ffffff;
-  border: 1px solid #F1EFE9;
-  border-radius: 16px;
   padding: 1.5rem;
   display: flex;
   gap: 1.5rem;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .authorAvatarWrapper {
-  width: 80px;
-  height: 80px;
   flex-shrink: 0;
-  border-radius: 50%;
   overflow: hidden;
+  border-radius: 12px;
+  width: 140px;
+  height: 140px;
 }
 
 .authorAvatar {
@@ -285,16 +289,17 @@
 
 .authorCardName {
   font-family: var(--font-primary);
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #2B2638;
-  margin: 0 0 0.5rem 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: #4626A6;
+  margin: 5px 0 0.5rem 0;
 }
 
 .authorBio {
-  font-size: 0.85rem;
+  font-size: 14px;
+  font-weight: 400;
   line-height: 1.5;
-  color: #6B685B;
+  color: #404040;
   margin: 0;
 }
 
@@ -306,9 +311,6 @@
 }
 
 .reviewCard {
-  background: #ffffff;
-  border: 1px solid #F1EFE9;
-  border-radius: 16px;
   padding: 1.25rem 1.5rem;
   display: flex;
   gap: 1.25rem;
@@ -316,8 +318,8 @@
 }
 
 .reviewerAvatar {
-  width: 48px;
-  height: 48px;
+  width: 41px;
+  height: 41px;
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
@@ -335,16 +337,17 @@
 
 .reviewerName {
   font-family: var(--font-primary);
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #2B2638;
+  font-size: 15px;
+  font-weight: 500;
+  color: #120F0F;
   margin: 0 0 0.25rem 0;
 }
 
 .reviewText {
-  font-size: 0.85rem;
+  font-size: 14px;
+  font-weight: 400;
   line-height: 1.5;
-  color: #6B685B;
+  color: #404040;
   margin: 0;
 }
 
@@ -357,9 +360,7 @@
 
 /* Related section */
 .relatedSection {
-  margin-top: 5rem;
-  border-top: 1px solid #EAE8DF;
-  padding-top: 3rem;
+  margin-top: 42px;
 }
 
 .relatedTitle {
@@ -410,4 +411,10 @@
     flex-direction: column;
     text-align: center;
   }
+}
+.finalContainerRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
 }

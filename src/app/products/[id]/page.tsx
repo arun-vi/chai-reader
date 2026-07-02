@@ -31,15 +31,15 @@ export default function ProductDetailPage({ params }: PageProps) {
     );
   }
 
-  // Get related books (same category, excluding current book)
+  // Get related books from "might" category
   const relatedBooks = products
-    .filter((p) => p.category === book.category && p.id !== book.id)
-    .slice(0, 4);
+    .filter((p) => p.category === "might" && p.id !== book.id)
+    .slice(0, 5);
 
   // Fallback to other books if none in the same category
   const finalRelated = relatedBooks.length > 0 
     ? relatedBooks 
-    : products.filter((p) => p.id !== book.id).slice(0, 4);
+    : products.filter((p) => p.id !== book.id).slice(0, 5);
 
   return (
     <div className={styles.detailPage}>
@@ -166,16 +166,18 @@ export default function ProductDetailPage({ params }: PageProps) {
             <div className={styles.sectionBlock}>
               <h2 className={styles.sectionTitle}>About the Author</h2>
               <div className={styles.authorCard}>
-                <div className={styles.authorAvatarWrapper}>
+                <Link href={`/authors/${encodeURIComponent(book.author)}`} className={styles.authorAvatarWrapper}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={book.authorImage || "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150&q=80"}
                     alt={book.author}
                     className={styles.authorAvatar}
                   />
-                </div>
+                </Link>
                 <div className={styles.authorInfo}>
-                  <h3 className={styles.authorCardName}>{book.author}</h3>
+                  <Link href={`/authors/${encodeURIComponent(book.author)}`}>
+                    <h3 className={styles.authorCardName}>{book.author}</h3>
+                  </Link>
                   <p className={styles.authorBio}>
                     {book.authorBio ||
                       `${book.author} is a highly acclaimed writer known for their captivating literature storytelling.`}
@@ -216,10 +218,10 @@ export default function ProductDetailPage({ params }: PageProps) {
       {/* You Might Also Like Slider grid */}
       <section className={styles.relatedSection}>
         <h2 className={styles.relatedTitle}>You might also like</h2>
-        <div className="row g-4">
+        <div className={styles.finalContainerRow}>
           {finalRelated.map((relatedBook) => (
-            <div key={relatedBook.id} className="col-6 col-sm-4 col-md-3">
-              <Card product={relatedBook} />
+            <div key={relatedBook.id}>
+              <Card product={relatedBook} variant="might" />
             </div>
           ))}
         </div>
